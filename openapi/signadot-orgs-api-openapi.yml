@@ -1,0 +1,109 @@
+swagger: '2.0'
+info:
+  contact: {}
+  description: API for Signadot Sandboxes
+  title: Signadot Cluster Orgs API
+  version: '2.0'
+host: api.signadot.com
+basePath: /api/v2
+tags:
+- name: Orgs
+paths:
+  /orgs/:
+    get:
+      consumes:
+      - application/json
+      description: Get organization details
+      operationId: get-org-name
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/orgs.GetOrgNameResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '403':
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Org Name
+      tags:
+      - Orgs
+definitions:
+  orgs.GetOrgNameResponse:
+    properties:
+      clusterID:
+        description: ID of Authenticated Cluster, if any (via signadot-cluster-token header)
+        type: string
+      featureFlags:
+        additionalProperties:
+          type: boolean
+        description: Feature Flags as result of authentication
+        type: object
+      orgs:
+        items:
+          $ref: '#/definitions/orgs.Org'
+        type: array
+      user:
+        allOf:
+        - $ref: '#/definitions/orgs.User'
+        description: Authenticated User, if any
+      userFlags:
+        allOf:
+        - $ref: '#/definitions/authtypes.UserFlags'
+        description: Flags of authenticated user, if any
+    type: object
+  orgs.Org:
+    properties:
+      displayName:
+        type: string
+      name:
+        type: string
+    type: object
+  authtypes.UserFlags:
+    additionalProperties:
+      type: boolean
+    type: object
+  orgs.User:
+    properties:
+      avatar:
+        type: string
+      createdAt:
+        type: string
+      email:
+        type: string
+      firstName:
+        type: string
+      id:
+        type: string
+      lastName:
+        type: string
+      role:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  ErrorResponse:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+      requestId:
+        type: string
+    type: object
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: signadot-api-key
+    type: apiKey

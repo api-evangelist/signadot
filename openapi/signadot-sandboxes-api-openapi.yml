@@ -1,0 +1,782 @@
+swagger: '2.0'
+info:
+  contact: {}
+  description: API for Signadot Sandboxes
+  title: Signadot Cluster Sandboxes API
+  version: '2.0'
+host: api.signadot.com
+basePath: /api/v2
+tags:
+- name: Sandboxes
+paths:
+  /orgs/{orgName}/sandboxes:
+    get:
+      consumes:
+      - application/json
+      description: List all sandboxes under the specified Signadot org.
+      operationId: list-sandboxes
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/Sandbox'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: List sandboxes
+      tags:
+      - Sandboxes
+  /orgs/{orgName}/sandboxes/{sandboxName}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a given sandbox.
+      operationId: delete-sandbox
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      - description: Sandbox Name
+        in: path
+        name: sandboxName
+        required: true
+        type: string
+        x-example: my-sandbox
+      - description: force
+        in: query
+        name: force
+        type: boolean
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a sandbox
+      tags:
+      - Sandboxes
+    get:
+      consumes:
+      - application/json
+      description: Fetch the details about a given sandbox.
+      operationId: get-sandbox
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      - description: Sandbox Name
+        in: path
+        name: sandboxName
+        required: true
+        type: string
+        x-example: my-sandbox
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Sandbox'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get a sandbox
+      tags:
+      - Sandboxes
+    put:
+      consumes:
+      - application/json
+      description: Creates or updates a sandbox with the provided parameters.
+      operationId: apply-sandbox
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      - description: Sandbox Name
+        in: path
+        name: sandboxName
+        required: true
+        type: string
+        x-example: my-sandbox
+      - description: Request to create sandbox
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/Sandbox'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/Sandbox'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create or update a sandbox
+      tags:
+      - Sandboxes
+definitions:
+  defaults.CompositeDefaults:
+    properties:
+      cluster:
+        items:
+          $ref: '#/definitions/defaults.Default'
+        type: array
+    type: object
+  jobs.PhaseCount:
+    properties:
+      count:
+        type: integer
+      phase:
+        $ref: '#/definitions/jobs.Phase'
+    type: object
+  sandbox.ForkEndpoint:
+    properties:
+      name:
+        description: Name of the endpoint
+        type: string
+      port:
+        description: Port it will map to on the forked workload
+        type: integer
+      protocol:
+        description: Protocol that this endpoint uses
+        type: string
+    type: object
+  sandbox.EnvValueFromFork:
+    properties:
+      expression:
+        type: string
+      forkOf:
+        $ref: '#/definitions/sandbox.ForkOf'
+    type: object
+  virtual:
+    properties:
+      name:
+        type: string
+      workload:
+        $ref: '#/definitions/local.From'
+    type: object
+  sandboxes.Routing:
+    properties:
+      forwards:
+        items:
+          $ref: '#/definitions/sandboxes.Forward'
+        type: array
+    type: object
+  sandbox.Resource:
+    properties:
+      name:
+        description: Unique name for this resource (used to reference it in env vars and files)
+        type: string
+      params:
+        additionalProperties:
+          type: string
+        description: Plugin-specific parameters as key-value pairs
+        type: object
+      plugin:
+        description: Plugin name, optionally suffixed with @version (e.g. my-plugin@1.2.0)
+        type: string
+    type: object
+  sandbox.DefaultRouteGroup:
+    properties:
+      endpoints:
+        items:
+          $ref: '#/definitions/endpoints.Endpoint'
+        type: array
+    type: object
+  sandbox.EnvValueFromMap:
+    properties:
+      key:
+        type: string
+      name:
+        type: string
+      optional:
+        type: boolean
+    type: object
+  endpoints.Endpoint:
+    properties:
+      name:
+        type: string
+      target:
+        type: string
+    type: object
+  sandbox.TunnelStatus:
+    properties:
+      health:
+        properties:
+          connected:
+            type: boolean
+          lastCheckTime:
+            type: string
+          lastConnectedTime:
+            type: string
+        type: object
+    type: object
+  jobs.Phase:
+    enum:
+    - queued
+    - running
+    - failed
+    - succeeded
+    - canceled
+    type: string
+    x-enum-varnames:
+    - QueuedPhase
+    - RunningPhase
+    - FailedPhase
+    - SucceededPhase
+    - CanceledPhase
+  sandbox.CustomPatch:
+    properties:
+      type:
+        $ref: '#/definitions/sandboxes.PatchType'
+      value:
+        type: string
+    type: object
+  sandbox.EnvValueFrom:
+    properties:
+      configMap:
+        $ref: '#/definitions/sandbox.EnvValueFromMap'
+      fork:
+        $ref: '#/definitions/sandbox.EnvValueFromFork'
+      resource:
+        $ref: '#/definitions/sandbox.EnvValueFromResource'
+      secret:
+        $ref: '#/definitions/sandbox.EnvValueFromMap'
+    type: object
+  sandbox.TTL:
+    properties:
+      duration:
+        description: "Duration represents the duration until sandbox end of life.\nIt should be an unsigned integer not exceeding 32 bits followed by\na units character, which can be one of the following.\n  - 'm' for minutes\n  - 'h' for hours\n  - 'd' for days\n  - 'w' for weeks"
+        type: string
+      offsetFrom:
+        description: 'OffsetFrom indicates what the Duration is relative to.  It
+
+          may be the empty string, "createdAt" or "updatedAt".  The empty string
+
+          defaults to meaning "createdAt".'
+        type: string
+    type: object
+  sandbox.HostEndpoint:
+    properties:
+      host:
+        description: Hostname that this endpoint points to
+        type: string
+      name:
+        description: Name of the endpoint
+        type: string
+      port:
+        description: Port it will map to on the specified host
+        type: integer
+      protocol:
+        description: Protocol that this endpoint uses
+        type: string
+    type: object
+  EmptyResponse:
+    type: object
+  sandbox.Spec:
+    properties:
+      cluster:
+        description: Cluster within which this sandbox should be created
+        type: string
+      defaultRouteGroup:
+        allOf:
+        - $ref: '#/definitions/sandbox.DefaultRouteGroup'
+        description: DefaultRouteGroup can be used to define route group endpoints for the sandbox.
+      description:
+        description: Description of the purpose of this sandbox
+        type: string
+      disableSandboxTrafficManager:
+        description: 'DisableSandboxTrafficManager provides a way of turning off the sandbox
+
+          traffic manager for forks in this sandbox.
+
+          Deprecated in operators since v1.1. The sandbox traffic manager has been
+
+          retired.'
+        type: boolean
+      endpoints:
+        description: Deprecated. Use defaultRouteGroup.Endpoints instead.
+        items:
+          $ref: '#/definitions/sandbox.HostEndpoint'
+        type: array
+        x-omitempty: 'true'
+      forks:
+        description: Forks is the specification of each forked entity
+        items:
+          $ref: '#/definitions/sandbox.Fork'
+        type: array
+      labels:
+        additionalProperties:
+          type: string
+        description: Labels are used to specify metadata associated with the sandbox as key-value pairs.
+        type: object
+      middleware:
+        description: Request Middleware
+        items:
+          $ref: '#/definitions/sandboxes.Middleware'
+        type: array
+      resources:
+        description: Resources specifies each required resource to spin up the sandbox
+        items:
+          $ref: '#/definitions/sandbox.Resource'
+        type: array
+      routing:
+        allOf:
+        - $ref: '#/definitions/sandboxes.Routing'
+        description: Routing specification
+      ttl:
+        allOf:
+        - $ref: '#/definitions/sandbox.TTL'
+        description: 'TTL gives the maximum lifetime of the sandbox.
+
+          It may be empty, in which case it defaults to forever.'
+      virtual:
+        description: Virtual Workloads
+        items:
+          $ref: '#/definitions/virtual'
+        type: array
+    required:
+    - cluster
+    - forks
+    type: object
+  sandbox.TestExecutionsSummaryChecks:
+    properties:
+      failed:
+        type: integer
+      passed:
+        type: integer
+    type: object
+  defaults.ResourceKind:
+    enum:
+    - sandbox
+    - routegroup
+    type: string
+    x-enum-varnames:
+    - SandboxResourceKind
+    - RouteGroupResourceKind
+  sandbox.Fork:
+    properties:
+      customizations:
+        allOf:
+        - $ref: '#/definitions/sandbox.Customizations'
+        description: Customizations specify the customizations we will apply on the fork
+      endpoints:
+        description: Deprecated. Use defaultRouteGroup.Endpoints instead.
+        items:
+          $ref: '#/definitions/sandbox.ForkEndpoint'
+        type: array
+        x-omitempty: 'true'
+      forkOf:
+        allOf:
+        - $ref: '#/definitions/sandbox.ForkOf'
+        description: 'ForkOf specifies the target workload that we will be forking.  In this usage
+
+          the Kind of the ForkOf object must not be a service.'
+      name:
+        type: string
+    type: object
+  sandbox.ForkOf:
+    properties:
+      kind:
+        description: Kind of the baseline workload.
+        example: Deployment
+        type: string
+      name:
+        description: Name of the entity within the Kubernetes cluster.
+        example: my-frontend
+        type: string
+      namespace:
+        description: Namespace within which the entity lives in the Kubernetes cluster.
+        example: default
+        type: string
+    required:
+    - kind
+    - name
+    - namespace
+    type: object
+  sandbox.Customizations:
+    properties:
+      env:
+        description: Environment variable modifications that will be applied to the forked workload
+        items:
+          $ref: '#/definitions/sandbox.EnvVar'
+        type: array
+      images:
+        description: One or more docker images that will be applied to the forked workload
+        items:
+          $ref: '#/definitions/sandbox.Image'
+        type: array
+      patch:
+        $ref: '#/definitions/sandbox.CustomPatch'
+    type: object
+  sandboxes.Forward:
+    properties:
+      appProtocol:
+        type: string
+      name:
+        type: string
+      port:
+        type: integer
+      toLocal:
+        type: string
+    type: object
+  sandboxes.ForwardStatus:
+    properties:
+      name:
+        type: string
+      tunnel:
+        $ref: '#/definitions/sandbox.TunnelStatus'
+    type: object
+  testexecutions.PhaseCount:
+    properties:
+      count:
+        type: integer
+      phase:
+        $ref: '#/definitions/testexecutions.Phase'
+    type: object
+  sandbox.EnvValueFromResource:
+    properties:
+      name:
+        type: string
+      outputKey:
+        type: string
+    type: object
+  Sandbox:
+    properties:
+      createdAt:
+        type: string
+      defaults:
+        $ref: '#/definitions/defaults.CompositeDefaults'
+      endpoints:
+        items:
+          $ref: '#/definitions/sandbox.Endpoint'
+        type: array
+      name:
+        description: Human-readable name of this sandbox
+        type: string
+      routingKey:
+        type: string
+      spec:
+        $ref: '#/definitions/sandbox.Spec'
+      status:
+        allOf:
+        - $ref: '#/definitions/sandbox.Readiness'
+        description: Status *sdv1.SandboxReadiness `json:"status,omitempty"`
+      updatedAt:
+        type: string
+    type: object
+  sandboxes.ArgValueFrom:
+    properties:
+      forward:
+        type: string
+    type: object
+  sandboxes.JobsSummary:
+    properties:
+      phaseCounts:
+        items:
+          $ref: '#/definitions/jobs.PhaseCount'
+        type: array
+    type: object
+  sandbox.TestExecutionsSummary:
+    properties:
+      checks:
+        $ref: '#/definitions/sandbox.TestExecutionsSummaryChecks'
+      phaseCounts:
+        items:
+          $ref: '#/definitions/testexecutions.PhaseCount'
+        type: array
+      trafficDiffs:
+        $ref: '#/definitions/sandbox.TestExecutionsSummaryTrafficDiffs'
+    type: object
+  sandbox.Endpoint:
+    properties:
+      baselineUrl:
+        type: string
+      host:
+        type: string
+      name:
+        type: string
+      port:
+        type: integer
+      protocol:
+        type: string
+      routeType:
+        type: string
+      target:
+        type: string
+      url:
+        type: string
+    type: object
+  defaults.Default:
+    properties:
+      class:
+        $ref: '#/definitions/defaults.DefaultClass'
+      createdAt:
+        type: string
+      resourceKind:
+        $ref: '#/definitions/defaults.ResourceKind'
+      updatedAt:
+        type: string
+      value: {}
+    type: object
+  ErrorResponse:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+      requestId:
+        type: string
+    type: object
+  sandbox.Image:
+    properties:
+      container:
+        description: Container is the container this image must apply to in the forked workload
+        type: string
+      image:
+        description: Name of the image (e.g. gcr.io/my-image/repo:my-tag)
+        type: string
+    type: object
+  sandboxes.PatchType:
+    enum:
+    - strategic
+    - merge
+    - json
+    - signadot/env
+    - signadot/image
+    type: string
+    x-enum-varnames:
+    - PatchTypeStrategic
+    - PatchTypeMerge
+    - PatchTypeJSON
+    - PatchTypeSDEnv
+    - PatchTypeSDImage
+  sandbox.EnvVar:
+    properties:
+      container:
+        description: name of container to which it applies
+        type: string
+      name:
+        description: environmental variable name
+        type: string
+      operation:
+        allOf:
+        - $ref: '#/definitions/sandboxes.EnvOpName'
+        description: upsert or delete
+      value:
+        description: environmental variable value
+        type: string
+      valueFrom:
+        allOf:
+        - $ref: '#/definitions/sandbox.EnvValueFrom'
+        description: environmental variable dynamic value
+    type: object
+  sandboxes.EnvOpName:
+    enum:
+    - upsert
+    - delete
+    type: string
+    x-enum-varnames:
+    - EnvOpUpsert
+    - EnvOpDelete
+  sandboxes.Middleware:
+    properties:
+      args:
+        description: Middleware arguments
+        items:
+          $ref: '#/definitions/sandboxes.Argument'
+        type: array
+      match:
+        description: 'Matches specifies a disjunction of matching criteria for dispatching
+
+          the middleware.  Any empty list means don''t dispatch anything.'
+        items:
+          $ref: '#/definitions/sandboxes.MiddlewareMatch'
+        type: array
+      name:
+        description: Middleware name
+        type: string
+    type: object
+  testexecutions.Phase:
+    enum:
+    - pending
+    - in_progress
+    - failed
+    - succeeded
+    - canceled
+    type: string
+    x-enum-varnames:
+    - PendingPhase
+    - InProgressPhase
+    - FailedPhase
+    - SucceededPhase
+    - CanceledPhase
+  sandboxes.Argument:
+    properties:
+      name:
+        description: Name indicates the name of the associated parameter.
+        type: string
+      value:
+        description: 'Value indicates the value passed to the parameter of
+
+          the same name.'
+        type: string
+      valueFrom:
+        allOf:
+        - $ref: '#/definitions/sandboxes.ArgValueFrom'
+        description: ValueFrom indicates from where to grab the value
+    type: object
+  defaults.DefaultClass:
+    enum:
+    - ttl
+    type: string
+    x-enum-varnames:
+    - TTL
+  sandbox.TestExecutionsSummaryTrafficDiffs:
+    properties:
+      green:
+        type: integer
+      red:
+        type: integer
+      yellow:
+        type: integer
+    type: object
+  sandbox.Readiness:
+    properties:
+      forwards:
+        description: Forwards status
+        items:
+          $ref: '#/definitions/sandboxes.ForwardStatus'
+        type: array
+      jobs:
+        allOf:
+        - $ref: '#/definitions/sandboxes.JobsSummary'
+        description: status of the jobs running in the context of the given sandbox
+      message:
+        description: 'Message is a human readable explanation of why
+
+          the sandbox is healthy or not.'
+        type: string
+      ready:
+        description: 'Ready indicates whether the sandbox is ready,
+
+          meaning that it can be used for testing.'
+        type: boolean
+      reason:
+        description: 'Reason is a machine readable explanation of why
+
+          the sandbox is healthy or not.'
+        type: string
+      scheduledDeleteTime:
+        description: 'ScheduledDeleteTime returns the formatted and computed ttl based on the Duration
+
+          and OffsetFrom'
+        type: string
+      testExecutions:
+        allOf:
+        - $ref: '#/definitions/sandbox.TestExecutionsSummary'
+        description: status of the test executions running in the context of the given sandbox
+    type: object
+  sandboxes.MiddlewareMatch:
+    properties:
+      workload:
+        description: 'Workload specifies a glob which matches
+
+          each workload name in the spec.'
+        type: string
+    type: object
+  local.From:
+    properties:
+      kind:
+        description: Kind of the baseline workload.
+        example: Deployment
+        type: string
+      name:
+        description: Name of the entity within the Kubernetes cluster.
+        example: my-frontend
+        type: string
+      namespace:
+        description: Namespace within which the entity lives in the Kubernetes cluster.
+        example: default
+        type: string
+    required:
+    - kind
+    - name
+    - namespace
+    type: object
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: signadot-api-key
+    type: apiKey

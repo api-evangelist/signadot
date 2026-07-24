@@ -1,0 +1,386 @@
+swagger: '2.0'
+info:
+  contact: {}
+  description: API for Signadot Sandboxes
+  title: Signadot Cluster RouteGroups API
+  version: '2.0'
+host: api.signadot.com
+basePath: /api/v2
+tags:
+- name: RouteGroups
+paths:
+  /orgs/{orgName}/routegroups:
+    get:
+      consumes:
+      - application/json
+      description: List all routegroups under the specified Signadot org.
+      operationId: list-routegroups
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/RouteGroup'
+            type: array
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: List routegroups
+      tags:
+      - RouteGroups
+  /orgs/{orgName}/routegroups/{routegroupName}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a given routegroup.
+      operationId: delete-routegroup
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      - description: RouteGroup Name
+        in: path
+        name: routegroupName
+        required: true
+        type: string
+        x-example: my-routegroup
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/EmptyResponse'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a routegroup
+      tags:
+      - RouteGroups
+    get:
+      consumes:
+      - application/json
+      description: Fetch the details about a given routegroup.
+      operationId: get-routegroup
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      - description: RouteGroup Name
+        in: path
+        name: routegroupName
+        required: true
+        type: string
+        x-example: my-routegroup
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RouteGroup'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get a routegroup
+      tags:
+      - RouteGroups
+    put:
+      consumes:
+      - application/json
+      description: Creates or updates a routegroup with the provided parameters.
+      operationId: apply-routegroup
+      parameters:
+      - description: Signadot Org Name
+        in: path
+        name: orgName
+        required: true
+        type: string
+        x-example: my-company
+      - description: RouteGroup Name
+        in: path
+        name: routegroupName
+        required: true
+        type: string
+        x-example: my-routegroup
+      - description: Request to create or update routegroup
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/RouteGroup'
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/RouteGroup'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '401':
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '502':
+          description: Bad Gateway
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create or update a routegroup
+      tags:
+      - RouteGroups
+definitions:
+  defaults.CompositeDefaults:
+    properties:
+      cluster:
+        items:
+          $ref: '#/definitions/defaults.Default'
+        type: array
+    type: object
+  RouteGroup:
+    properties:
+      createdAt:
+        type: string
+      defaults:
+        $ref: '#/definitions/defaults.CompositeDefaults'
+      endpoints:
+        items:
+          $ref: '#/definitions/routegroups.EndpointURL'
+        type: array
+        x-omitempty: true
+      name:
+        type: string
+      routingKey:
+        type: string
+      spec:
+        $ref: '#/definitions/routeGroup.Spec'
+      status:
+        $ref: '#/definitions/routeGroup.Status'
+      updatedAt:
+        type: string
+    type: object
+  EmptyResponse:
+    type: object
+  routeGroup.Spec:
+    properties:
+      cluster:
+        description: 'Cluster gives the cluster to which the route group applies.
+
+          If left empty, this RG will become a multi-cluster RG..'
+        type: string
+      description:
+        description: Description provides a short description of the route group.
+        type: string
+      endpoints:
+        description: 'Endpoints define endpoints which target different in-cluster
+
+          services.'
+        items:
+          $ref: '#/definitions/routegroups.Endpoint'
+        type: array
+      match:
+        allOf:
+        - $ref: '#/definitions/routeGroup.Match'
+        description: 'Match defines a matcher for labels, which matches
+
+          sandboxes that should be a part of this route group.'
+      ttl:
+        allOf:
+        - $ref: '#/definitions/routeGroup.TTL'
+        description: TTL define when/how the route group should be deleted
+    type: object
+  defaults.Default:
+    properties:
+      class:
+        $ref: '#/definitions/defaults.DefaultClass'
+      createdAt:
+        type: string
+      resourceKind:
+        $ref: '#/definitions/defaults.ResourceKind'
+      updatedAt:
+        type: string
+      value: {}
+    type: object
+  routeGroup.TTL:
+    properties:
+      duration:
+        description: "Duration represents the duration until routegroup's end of life.\nIt should be an unsigned integer not exceeding 32 bits followed by\na units character, which can be one of the following.\n  - 'm' for minutes\n  - 'h' for hours\n  - 'd' for days\n  - 'w' for weeks"
+        type: string
+      offsetFrom:
+        description: 'OffsetFrom indicates what the Duration is relative to.  It
+
+          may be the empty string, "noMatchedSandboxes", "createdAt" or "updatedAt". The empty string
+
+          defaults to meaning "noMatchedSandboxes".'
+        type: string
+    type: object
+  routeGroup.Match:
+    properties:
+      all:
+        description: 'When All is non-nil, T matches a set of labels if and only if every element of All matches them.
+
+          Only one field may be non-nil.'
+        items:
+          $ref: '#/definitions/routeGroup.Match'
+        type: array
+        x-omitempty: true
+      any:
+        description: 'When Any is non-nil, T matches a set of labels if and only if some element of Any matches them.
+
+          Only one field may be non-nil.'
+        items:
+          $ref: '#/definitions/routeGroup.Match'
+        type: array
+        x-omitempty: true
+      label:
+        allOf:
+        - $ref: '#/definitions/routeGroup.MatchLabel'
+        description: 'When Label is non-nil, T matches a set of labels L if and only if t.Label.Matches(L).
+
+          Only one field may be non-nil.'
+    type: object
+  routegroups.EndpointURL:
+    properties:
+      cluster:
+        type: string
+      name:
+        type: string
+      target:
+        type: string
+      url:
+        type: string
+    type: object
+  defaults.ResourceKind:
+    enum:
+    - sandbox
+    - routegroup
+    type: string
+    x-enum-varnames:
+    - SandboxResourceKind
+    - RouteGroupResourceKind
+  defaults.DefaultClass:
+    enum:
+    - ttl
+    type: string
+    x-enum-varnames:
+    - TTL
+  routeGroup.Status:
+    properties:
+      matchedSandboxes:
+        description: 'MatchedSandboxes gives the list of sandboxes whose labels
+
+          were matched by the ''match'' object in the spec.'
+        items:
+          type: string
+        type: array
+      message:
+        description: 'Message is a human readable explanation of why
+
+          the sandbox is healthy or not.'
+        type: string
+      ready:
+        description: 'Ready indicates whether the sandbox is ready,
+
+          meaning that it can be used for testing.'
+        type: boolean
+      reason:
+        description: 'Reason is a machine readable explanation of why
+
+          the sandbox is healthy or not.'
+        type: string
+      scheduledDeleteTime:
+        description: 'ScheduledDeleteTime returns the formatted and computed ttl based on the Duration
+
+          and OffsetFrom'
+        type: string
+    type: object
+  routeGroup.MatchLabel:
+    properties:
+      key:
+        description: 'Key is an exact match on a label key, glob
+
+          characters are just considered normal characters.'
+        type: string
+      value:
+        description: 'Value is a glob match for the value of a
+
+          sandbox label.  See https://pkg.go.dev/path/filepath#Match
+
+          for the file glob syntax.'
+        type: string
+    type: object
+  ErrorResponse:
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
+      requestId:
+        type: string
+    type: object
+  routegroups.Endpoint:
+    properties:
+      cluster:
+        type: string
+      name:
+        type: string
+      target:
+        type: string
+    type: object
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: signadot-api-key
+    type: apiKey
