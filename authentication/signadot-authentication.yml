@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/signadot-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: signadot-api-key
+  sources:
+  - openapi/signadot-openapi-original.yml

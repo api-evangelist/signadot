@@ -1,0 +1,105 @@
+# Signadot
+
+> Signadot is the platform for validating AI-generated code and microservices changes against real dependencies before merge. Its core is a novel approach to environment virtualization that spans services, datastores, message queues, and other resources: large numbers of lightweight ephemeral environments spin up in seconds without duplicating the entire stack for each one. Testing capabilities (Jobs, Smart Tests, and Plans) are layered on top of these environments to form a comprehensive validation platform, where code written by developers or by coding agents (Cursor, GitHub Copilot, Devin, Claude Code) is verified in a production-like environment before a PR lands. Signadot installs as a Kubernetes operator and integrates with service meshes (Istio, Linkerd), CI/CD pipelines, and observability stacks. Sandboxes also cover dependencies that run outside Kubernetes, including databases, cloud services, and workloads on VMs, ECS, or serverless, via resource plugins.
+
+A full-content markdown export of the pages below is available at https://www.signadot.com/llms-full.txt
+
+A separate llms.txt covering the full technical documentation is available at https://www.signadot.com/docs/llms.txt
+
+## Core Product Pages
+
+- [Homepage](https://www.signadot.com/): Overview of Signadot's platform for agentic development: ephemeral sandboxes, jobs-based test execution, and plans-based validation of code changes from developers and coding agents.
+- [Platform](https://www.signadot.com/product/platform/): The Sandboxes platform. Request-level isolation gives every change a lightweight environment on a shared Kubernetes cluster, with RouteGroups for multi-service changes, context propagation, native message queue support, and resource plugins that bring in dependencies running outside the cluster, such as databases and cloud services.
+- [Smart Tests](https://www.signadot.com/product/smart-tests/): AI-powered regression detection. Write API calls once in Starlark, and Signadot runs them against both the PR version and the stable version of a service in live sandboxes, using AI to flag real behavioral regressions instead of noise.
+- [Jobs](https://www.signadot.com/product/jobs/): Run existing Playwright, Cypress, k6, or custom test suites on pre-warmed runner pods inside your cluster, automatically routed to the sandbox under test. Logs stream to CI and reports, screenshots, and videos upload as artifacts.
+- [Plans](https://www.signadot.com/product/plans/): Reusable validation workflows authored from natural language and run against live sandboxes. Platform teams govern an action catalog, and developers and coding agents run tagged plans by name until every check passes before the PR opens.
+- [Pricing](https://www.signadot.com/pricing/): Flexible pricing based on active sandboxes and testing volume. Free tier for small teams, paid plans scaling with usage.
+
+## Solutions
+
+- [Local Development](https://www.signadot.com/solutions/local-development/): Connect local workstations, CDEs, or agent runtimes directly to your Kubernetes cluster via isolated sandboxes. Develop against real databases, message queues, and microservices instead of mocks.
+- [Preview Environments](https://www.signadot.com/solutions/preview-environments/): Automatically generate shareable preview environments for every pull request. Sandboxes virtualize your cluster by routing traffic to only the changed services, spinning up in seconds.
+- [Microservices Testing](https://www.signadot.com/solutions/microservices-testing/): Run end-to-end tests (Cypress, Playwright, Selenium) against isolated sandboxes on every commit. Each sandbox contains only the changed services within your existing cluster.
+- [Agentic Development](https://www.signadot.com/solutions/agentic-development/): Enable autonomous coding agents to provision sandboxes, run tests, and validate the code they write via the Signadot MCP server. Supports Cursor, Claude Code, VSCode, and any MCP-compatible tool.
+- [Coding Agent Environments](https://www.signadot.com/solutions/coding-agent-environments/): Production-shape Kubernetes environments for Claude Code, Cursor background agents, Codex, and Windsurf. Real services and dependencies with per-task isolation.
+- [Ephemeral Environments](https://www.signadot.com/solutions/ephemeral-environments/): Lightweight per-change environments that virtualize your Kubernetes cluster. Real services and dependencies, ready in seconds and gone when the change ships.
+- [Kubernetes Test Environments](https://www.signadot.com/solutions/kubernetes-test-environments/): Give every developer, PR, and coding agent a real Kubernetes test environment on the staging cluster you already run, with no contention.
+
+## Coding Agent Integration
+
+- [MCP Server](https://www.signadot.com/docs/integrations/mcp): Signadot's Model Context Protocol server, bundled with the Signadot CLI. Exposes tools for creating sandboxes and route groups and running validations, so MCP-compatible agents can test code changes against real dependencies.
+- [MCP Setup: Claude Code](https://www.signadot.com/docs/integrations/mcp/claude-code): Configure the Signadot MCP server in Claude Code.
+- [MCP Setup: Cursor](https://www.signadot.com/docs/integrations/mcp/cursor): Configure the Signadot MCP server in Cursor.
+- [MCP Setup: VS Code](https://www.signadot.com/docs/integrations/mcp/vscode): Configure the Signadot MCP server in VS Code.
+- [MCP Setup: Other Clients](https://www.signadot.com/docs/integrations/mcp/other-clients): Configure the Signadot MCP server in any MCP-compatible client.
+- [Coding Agents Overview](https://www.signadot.com/docs/integrations/coding-agents): How coding agents use Signadot to provision environments and validate their own changes.
+- [Agent Skills](https://www.signadot.com/docs/integrations/coding-agents/agent-skills): Installable skills (signadot-validate, signadot-plan) that teach coding agents Signadot validation workflows. Install with `npx skills add signadot/agent-skills`.
+- [Tutorial: Closed-Loop Validation with Claude Code](https://www.signadot.com/docs/tutorials/closed-loop-microservices-validation-claude-code): End-to-end tutorial where Claude Code implements a change and validates it in a Signadot sandbox.
+- [Tutorial: Closed-Loop Verification with Cursor](https://www.signadot.com/docs/tutorials/closed-loop-verification-cursor): End-to-end tutorial where Cursor validates changes against real services in a sandbox.
+- [Tutorial: Autonomous Validation with Codex](https://www.signadot.com/docs/tutorials/autonomous-closed-loop-codex): Autonomous closed-loop validation of code changes with OpenAI Codex.
+- [GitHub: signadot](https://github.com/signadot): Signadot's open source repositories, including the CLI, agent skills, and validation actions.
+- [GitHub: agent-skills](https://github.com/signadot/agent-skills): Source repository for the Signadot agent skills.
+- [GitHub: actions](https://github.com/signadot/actions): Community-extensible catalog of validation actions used by Signadot Plans.
+
+## Guides
+
+- [The Complete Guide to Microservices Testing](https://www.signadot.com/the-complete-guide-to-microservices-testing-from-local-development-to-production/): Testing microservices across the lifecycle: local development, pull request validation, CI/CD, staging, and production, with strategies built for Kubernetes at scale.
+- [Ephemeral Environments in Kubernetes: The Complete Guide](https://www.signadot.com/guide-to-ephemeral-environments-kubernetes/): The four ways to build ephemeral environments in Kubernetes, the tradeoffs of each, and how to test microservices against real dependencies without duplicating infrastructure.
+- [What Is a Kubernetes Sandbox?](https://www.signadot.com/kubernetes-sandbox/): The two meanings of a Kubernetes sandbox: a secure box for running untrusted or AI-generated code, and a lightweight environment for testing a change against real services.
+- [Validating AI-Generated Code Against Real Kubernetes Dependencies](https://www.signadot.com/validate-ai-generated-code-kubernetes/): Why a closed validation loop, real cloud-native dependencies, and infrastructure that scales to thousands of parallel agents turn AI-generated pull requests into software you can ship.
+- [Microservices Testing Environments on Kubernetes](https://www.signadot.com/a-comprehensive-guide-to-microservices-testing-environments-on-kubernetes/): Best practices for microservices testing environments, ephemeral environments, and sandboxes on Kubernetes.
+- [The Future of API Validation: AI-Powered Contract Testing](https://www.signadot.com/the-future-of-api-validation-a-deep-dive-into-ai-powered-contract-testing/): How AI-powered contract testing transforms API validation for microservices.
+- [Microservices Testing for FinTech](https://www.signadot.com/microservices-testing-for-fintech/): How fintech engineering teams test microservices safely in production-like Kubernetes environments.
+- [What Are Preview Environments? The Complete Kubernetes Guide](https://www.signadot.com/articles/comprehensive-guide-to-preview-environments/): What preview environments are, how they work in Kubernetes, and an honest comparison of the four main ways to build them: full duplication, virtual clusters, GitOps pipelines, and request-level isolation.
+- [Local Development on Kubernetes: The Complete Guide](https://www.signadot.com/guide-to-local-development-kubernetes/): The four approaches to Kubernetes local development, local clusters, sync tools, shared remote clusters, and cloud development environments, compared on speed, quality, and cost.
+- [Staging Environment Challenges: The Bottleneck and How to Fix It](https://www.signadot.com/blog/the-staging-bottleneck-why-your-engineering-team-is-slow-and-how-to-fix-it/): Why one shared staging environment becomes the bottleneck for scaling teams and how per-PR sandboxes on a staging baseline remove the contention.
+- [Kubernetes Staging Environments: How to Build, Run, and Share One](https://www.signadot.com/blog/kubernetes-staging-environment/): An opinionated guide to staging on Kubernetes: why most companies need exactly one pre-production environment, a reference architecture and data strategy, staging SLOs, and how test tenants share one environment safely across services, message queues, and databases.
+- [Kubernetes Namespace vs Cluster: Pros and Cons for Test Environments](https://www.signadot.com/blog/namespace-based-environments-for-testing-pros-and-cons/): How namespaces compare to separate clusters and vClusters as test environment boundaries, where namespace-based environments break down, and what teams move to.
+
+## Customer Case Studies
+
+- [Brex](https://www.signadot.com/case-studies/brex-uses-signadot-to-scale-developer-testing-across-100s-of-engineers/): How Brex scaled developer testing across 100s of engineers and coding agents, cutting preview infrastructure costs by 99% and saving about $2 million annually by replacing full environment duplication with Signadot sandboxes.
+- [DoorDash](https://www.signadot.com/case-studies/how-developers-at-doordash-get-10x-faster-feedback/): How DoorDash developers achieved 10x faster feedback loops on code changes using Signadot's ephemeral sandbox environments.
+- [Earnest](https://www.signadot.com/case-studies/how-earnest-empowers-developers-for-early-testing/): How Earnest shifted testing left, empowering developers to catch bugs earlier in the development cycle with isolated sandbox environments.
+- [Bitso](https://www.signadot.com/case-studies/how-bitso-scaled-delivery-with-coding-agents/): How Bitso scaled branch-based development for 250+ engineers and 200+ microservices, with coding agents validating changes in isolated environments per PR.
+- [ShareChat](https://www.signadot.com/case-studies/sharechat-chooses-signadot-giving-devs-high-quality-testing-feedback/): How ShareChat eliminated shared staging bottlenecks and enabled parallel development with Signadot sandboxes.
+- [All Customers](https://www.signadot.com/customers/): Customer success stories and video testimonials from engineering teams using Signadot.
+
+## Technical Documentation
+
+- [Docs llms.txt](https://www.signadot.com/docs/llms.txt): Index of the full technical documentation in llms.txt format, with markdown exports of every docs page.
+- [Docs Overview](https://www.signadot.com/docs/overview): Getting started guide and platform overview.
+- [Installation](https://www.signadot.com/docs/getting-started/installation): Install the Signadot Operator in your cluster and the Signadot CLI on your machine.
+- [Quickstart: First Sandbox](https://www.signadot.com/docs/tutorials/quickstart/first-sandbox): Create your first sandbox and test a change against real dependencies.
+- [Quickstart: Plan-Based Validation](https://www.signadot.com/docs/tutorials/quickstart/plan-based-validation): Run your first plan-based validation workflow.
+- [Sandbox Concepts](https://www.signadot.com/docs/concepts/sandbox): How sandboxes work. Lightweight isolated environments that virtualize your Kubernetes cluster by routing traffic to only the changed services.
+- [Smart Tests and Jobs Concepts](https://www.signadot.com/docs/concepts/smart-tests-and-jobs): How Smart Tests and Jobs execute test workloads against sandboxes, including AI-assisted diff analysis.
+- [Set Up Local Testing](https://www.signadot.com/docs/guides/use-cases/set-up-local-testing): Guide for connecting local development environments to your Kubernetes cluster via sandboxes.
+- [Set Up PR Sandboxes](https://www.signadot.com/docs/guides/set-up-pr-sandboxes): Guide for automating preview environment creation on every pull request.
+- [Run Automated Tests](https://www.signadot.com/docs/guides/use-cases/run-automated-tests): Guide for executing test frameworks (Playwright, Cypress, K6) against isolated sandboxes.
+- [CI Integration](https://www.signadot.com/docs/guides/integrate-ci): Integration guides for GitHub Actions, GitLab CI, Jenkins, and BitBucket pipelines.
+- [CLI Reference](https://www.signadot.com/docs/reference/cli/overview): Command reference for the Signadot CLI.
+- [REST API Reference](https://www.signadot.com/docs/api): Full REST API specification for the Signadot control plane.
+- [Release Notes](https://www.signadot.com/docs/release-notes): Changelog of Signadot platform, operator, and CLI releases.
+
+## Comparisons
+
+- [vs Mirrord](https://www.signadot.com/comparison/mirrord/): Signadot compared to Mirrord for Kubernetes development and testing.
+- [vs Okteto](https://www.signadot.com/comparison/okteto/): Signadot compared to Okteto for cloud development environments.
+- [vs Telepresence](https://www.signadot.com/comparison/telepresence/): Signadot compared to Telepresence for local-to-cluster development.
+- [vs vCluster](https://www.signadot.com/comparison/vcluster/): Signadot compared to vCluster for virtual Kubernetes clusters.
+- [vs Qovery](https://www.signadot.com/comparison/qovery/): Signadot compared to Qovery for preview environments.
+- [vs Release](https://www.signadot.com/comparison/release/): Signadot compared to Release for ephemeral environments.
+- [vs Pact](https://www.signadot.com/comparison/pact/): Signadot compared to Pact for contract testing.
+
+## Blog & Articles
+
+- [Blog](https://www.signadot.com/blog/): Engineering blog covering microservices testing, Kubernetes development, agentic workflows, and DevOps best practices.
+- [Articles](https://www.signadot.com/articles/): In-depth technical articles on testing strategies, platform engineering, and AI-assisted development.
+- [Resources](https://www.signadot.com/resources/): Whitepapers, guides, and downloadable resources on microservices testing.
+
+## Company
+
+- [About Us](https://www.signadot.com/about-us/): Signadot's mission, team, and company information.
+- [Schedule a Call](https://www.signadot.com/schedule-a-call/): Book a demo or consultation with the Signadot team.
+- [Sign Up](https://www.signadot.com/signup/): Create a free Signadot account.

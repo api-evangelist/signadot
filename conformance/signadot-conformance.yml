@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.signadot.com/pricing/
+standards:
+  - id: soc2
+    conforms: true
+    evidence: Enterprise plan provides SOC 2 reports (signadot.com/pricing).
+  - id: oauth2
+    conforms: false
+    evidence: API uses an apiKey header (signadot-api-key); no OAuth2 flows declared.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom envelope (ErrorResponse {code, error, requestId}), not application/problem+json.
+  - id: rest-openapi
+    conforms: true
+    evidence: Publishes a Swagger 2.0 specification for the /api/v2 control plane.
+  - id: pagination
+    conforms: false
+    evidence: List endpoints return unpaginated arrays; no cursor/offset parameters in the spec.
+  - id: idempotency-key
+    conforms: false
+    evidence: No Idempotency-Key header; resource create/update uses declarative PUT-by-name upsert semantics.
+compliance:
+  soc2: true
+  notes: SOC 2 reports are available under the Enterprise plan; no public trust center located.

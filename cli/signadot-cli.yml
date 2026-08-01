@@ -1,0 +1,47 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.signadot.com/docs/reference/cli/overview
+repo: https://github.com/signadot/cli
+current_version: v1.7.0
+license: Apache-2.0
+install:
+  - method: homebrew
+    command: brew install signadot/tap/signadot
+  - method: github-releases
+    url: https://github.com/signadot/cli/releases
+config:
+  env:
+    - SIGNADOT_API_KEY
+    - SIGNADOT_ORG
+  file: $HOME/.signadot/config.yaml
+  flag: --config
+usage: signadot <entity> <verb>
+commands:
+  - group: auth
+    description: Authenticate the CLI and check auth status.
+  - group: cluster
+    description: Manage connected Kubernetes clusters and cluster tokens.
+  - group: sandbox
+    description: Create, get, list, update, and delete ephemeral sandbox environments.
+  - group: routegroup
+    description: Manage route groups that span multiple sandboxes.
+  - group: resourceplugin
+    description: Manage resource plugins (dependencies outside the cluster).
+  - group: devbox
+    description: Manage devboxes for local development against the cluster.
+  - group: local
+    description: Run local workloads connected to a sandbox via secure tunnels.
+  - group: traffic
+    description: Record and inspect sandbox traffic.
+  - group: job
+    description: Create and manage test jobs (Playwright/Cypress/k6/custom) on runner pods.
+  - group: jobrunnergroup
+    description: Manage pools of pre-warmed job runner pods.
+  - group: smart-test
+    description: Create and manage AI-powered Smart Tests for regression detection.
+  - group: mcp
+    description: Run the bundled Signadot MCP server (stdio) for coding agents.
+key_flows:
+  - Create a sandbox forking a workload, then run tests routed to it.
+  - Connect a local workload to a remote cluster via signadot local.
+  - Launch the MCP server so an agent can drive sandboxes.

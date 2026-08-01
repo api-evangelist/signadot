@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.signadot.com/docs/release-notes
+scheme: semver
+current:
+  cli: v1.7.0
+  operator: v1.3.2
+  chrome_extension: v2.1.0
+entries:
+  - date: '2026-07-10'
+    title: Service Accounts & Enhanced Controls
+    breaking: false
+    highlights:
+      - Service accounts as non-human principals carrying admin/member roles; API keys inherit their account's permissions.
+      - Fair-usage limit enforcement (50 updates per sandbox).
+      - New run-container action for executing container images via Plans.
+  - date: '2026-07-03'
+    title: Operator v1.3.2
+    breaking: true
+    highlights:
+      - Default routing.iptablesMode switched from legacy to nft for modern node OSes (legacy systems must configure explicitly).
+      - Configurable log levels and custom root labels on forked workloads.
+      - Fixed Route Groups collapsing when constituent sandboxes become temporarily unready.
+  - date: '2026-06-23'
+    title: API & Dashboard Refinements
+    breaking: false
+    highlights:
+      - Optimized database performance for event queries and API responsiveness.
+      - Enhanced service status notifications on the Overview page for incidents/maintenance.
+  - date: '2026-06-18'
+    title: GitHub Webhook & AI Features
+    breaking: false
+    highlights:
+      - Fixed GitHub webhook handling for closed pull requests without a prior Signadot sandbox.
+      - AI Insights (sandbox status explanations) enabled by default for newly created organizations.
+  - date: '2026-06-03'
+    title: Critical Security Patches
+    breaking: false
+    highlights:
+      - Patched critical/high-severity CVEs in golang.org/x/crypto and golang.org/x/net.
+      - Improved sign-in flow with domain-aware authentication method selection.
+  - date: '2026-05-28'
+    title: CLI v1.7.0 & Plans Platform Launch
+    breaking: false
+    highlights:
+      - Plans runtime with pluggable Actions for multi-step validation.
+      - Resource plugin versioning with immutable published versions and @semver pinning.
+      - Control Plane Secrets with KMS envelope encryption (admin-only write access).

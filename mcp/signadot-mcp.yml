@@ -1,0 +1,48 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://www.signadot.com/docs/integrations/mcp
+docs: https://www.signadot.com/docs/integrations/mcp
+server:
+  name: signadot
+  transport: stdio
+  launch: signadot mcp
+  bundled_with: Signadot CLI (v1.4.0+)
+  auth: Uses the CLI's configured API key (SIGNADOT_API_KEY) and org (SIGNADOT_ORG)
+  clients:
+    - Claude Code (https://www.signadot.com/docs/integrations/mcp/claude-code)
+    - Cursor (https://www.signadot.com/docs/integrations/mcp/cursor)
+    - VS Code (https://www.signadot.com/docs/integrations/mcp/vscode)
+    - Any MCP-compatible client (https://www.signadot.com/docs/integrations/mcp/other-clients)
+description: >-
+  Signadot's Model Context Protocol server, bundled with the Signadot CLI. Exposes control-plane
+  operations as MCP tools so MCP-compatible coding agents (Cursor, Claude Code, VS Code, Codex)
+  can create sandboxes and route groups and run validations against real Kubernetes dependencies.
+tools:
+  - name: create_sandbox
+    description: Create a sandbox forking one or more workloads for a change under test.
+    source_operation: openapi/signadot-openapi-original.yml#apply-sandbox
+  - name: list_sandboxes
+    description: List sandboxes in the organization.
+    source_operation: openapi/signadot-openapi-original.yml#list-sandboxes
+  - name: get_sandbox
+    description: Retrieve a sandbox including status and preview endpoints.
+    source_operation: openapi/signadot-openapi-original.yml#get-sandbox
+  - name: create_routegroup
+    description: Create or update a route group spanning multiple sandboxes.
+    source_operation: openapi/signadot-openapi-original.yml#apply-routegroup
+  - name: list_routegroups
+    description: List route groups in the organization.
+    source_operation: openapi/signadot-openapi-original.yml#list-routegroups
+  - name: list_clusters
+    description: List connected Kubernetes clusters.
+    source_operation: openapi/signadot-openapi-original.yml#list-clusters
+  - name: list_resource_plugins
+    description: List available resource plugins.
+    source_operation: openapi/signadot-openapi-original.yml#list-resource-plugins
+  - name: auth_status
+    description: Check the agent's Signadot authentication status.
+notes: >-
+  Tool list summarized from the provider's MCP docs and mapped to the corresponding REST operationIds
+  in openapi/signadot-openapi-original.yml. The MCP server also exposes discovery of in-cluster
+  workloads/endpoints, devbox listing, local mappings, and access to core concept documentation.

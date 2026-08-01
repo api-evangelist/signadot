@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.signadot.com/docs/release-notes
+versioning:
+  scheme: uri-path
+  current: v2
+  api_base: https://api.signadot.com/api/v2
+  components:
+    cli: v1.7.0
+    operator: v1.3.2
+    release_scheme: semver
+status_page: https://status.signadot.com/
+release_notes: https://www.signadot.com/docs/release-notes
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No formal public deprecation/Sunset-header policy located. Breaking changes are announced in the
+    dated release notes (e.g. operator v1.3.2 changed default routing.iptablesMode from legacy to nft).
+sla:
+  url: null
+  notes: Enterprise plan offers custom contracts and premium support; no public uptime SLA page located.
+deprecated_operations: []

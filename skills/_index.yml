@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: generated
+provider_published:
+  repo: https://github.com/signadot/agent-skills
+  install: npx skills add signadot/agent-skills
+  docs: https://www.signadot.com/docs/integrations/coding-agents/agent-skills
+  skills:
+    - name: signadot-validate
+      description: Validate code changes against real Kubernetes dependencies using Signadot sandboxes, cluster connectivity, logs, endpoints, and routing isolation.
+    - name: signadot-plan
+      description: Author and refine Signadot Plan specifications via schema discovery, parameter composition, plan execution, and output inspection.
+skills:
+  - file: signadot-create-sandbox-and-validate.md
+    name: Create a sandbox and validate a change
+    api: openapi/signadot-openapi-original.yml
+    operations: [apply-sandbox, get-sandbox, list-sandboxes, delete-sandbox]
+  - file: signadot-manage-routegroup.md
+    name: Group sandboxes with a route group
+    api: openapi/signadot-openapi-original.yml
+    operations: [list-sandboxes, apply-routegroup, get-routegroup, delete-routegroup]

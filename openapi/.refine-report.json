@@ -1,0 +1,22 @@
+{
+  "provider": "signadot",
+  "sources": [
+    "signadot-cluster-api-openapi.yml",
+    "signadot-orgs-api-openapi.yml",
+    "signadot-resourceplugins-api-openapi.yml",
+    "signadot-routegroups-api-openapi.yml",
+    "signadot-sandboxes-api-openapi.yml"
+  ],
+  "outputs": [
+    "signadot-cluster-api-openapi.yml",
+    "signadot-orgs-api-openapi.yml",
+    "signadot-resourceplugins-api-openapi.yml",
+    "signadot-routegroups-api-openapi.yml",
+    "signadot-sandboxes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

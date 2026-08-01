@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/signadot
+packages:
+  - language: go
+    registry: pkg.go.dev
+    name: github.com/signadot/go-sdk
+    url: https://pkg.go.dev/github.com/signadot/go-sdk
+    repo: https://github.com/signadot/go-sdk
+    install: go get github.com/signadot/go-sdk
+    license: Apache-2.0
+    official: true
+    description: Official Go client SDK for the Signadot control-plane REST API.
+  - language: go
+    registry: homebrew
+    name: signadot/tap/signadot
+    url: https://github.com/signadot/homebrew-tap
+    repo: https://github.com/signadot/cli
+    install: brew install signadot/tap/signadot
+    license: Apache-2.0
+    official: true
+    description: Official Signadot CLI (also bundles the Signadot MCP server). Distributed via Homebrew tap and GitHub releases.

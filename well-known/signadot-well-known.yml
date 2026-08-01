@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: probed
+hosts:
+  - host: https://api.signadot.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+  - host: https://www.signadot.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+notes: >-
+  No /.well-known discovery documents are published on the API or website hosts (all 404). Recorded as a
+  valid negative result; no WellKnown pointer wired. Signadot does publish an llms.txt (see llms/).

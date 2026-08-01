@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/signadot-openapi-original.yml
+entities:
+  - name: Org
+    id: orgName
+    description: Top-level organization tenant; every resource is scoped under an org.
+    fields: [orgName]
+  - name: Cluster
+    id: name
+    description: A connected Kubernetes cluster running the Signadot Operator.
+    fields: [name, clusterConfig, createdAt, operator]
+  - name: ClusterToken
+    id: id
+    description: A connection token for a cluster (masked when listed).
+    fields: [id, createdAt, maskedValue, status, token]
+  - name: Sandbox
+    id: name
+    description: A lightweight ephemeral environment forking one or more workloads for a change under test.
+    fields: [name, spec, defaults, endpoints, routingKey, status, createdAt, updatedAt]
+  - name: RouteGroup
+    id: name
+    description: A group routing traffic across multiple sandboxes for multi-service changes.
+    fields: [name, spec, defaults, endpoints, routingKey, status, createdAt, updatedAt]
+  - name: ResourcePlugin
+    id: name
+    description: A versioned plugin that provisions dependencies outside the cluster (DBs, cloud services).
+    fields: [name, spec, status, createdAt, updatedAt]
+relationships:
+  - from: Cluster
+    to: Org
+    type: belongs_to
+    via: orgName
+  - from: ClusterToken
+    to: Cluster
+    type: belongs_to
+    via: clusterName
+  - from: Sandbox
+    to: Org
+    type: belongs_to
+    via: orgName
+  - from: Sandbox
+    to: Cluster
+    type: belongs_to
+    via: spec.cluster
+  - from: RouteGroup
+    to: Org
+    type: belongs_to
+    via: orgName
+  - from: RouteGroup
+    to: Sandbox
+    type: has_many
+    via: spec.matches (sandbox routing keys)
+  - from: ResourcePlugin
+    to: Org
+    type: belongs_to
+    via: orgName

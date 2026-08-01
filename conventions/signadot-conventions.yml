@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/signadot-openapi-original.yml
+docs: https://www.signadot.com/docs/api
+authentication:
+  style: api-key-header
+  header: signadot-api-key
+  cross_ref: authentication/signadot-authentication.yml
+base_url: https://api.signadot.com/api/v2
+versioning:
+  style: uri-path
+  current: v2
+  cross_ref: lifecycle/signadot-lifecycle.yml
+idempotency:
+  supported: true
+  style: declarative-put-upsert
+  detail: >-
+    Resources (sandbox, routegroup, resource plugin, cluster) are created and updated with PUT to a
+    named path (apply-sandbox, apply-routegroup, apply-resource-plugin, add-cluster), which is naturally
+    idempotent — repeating the same request converges to the same state. There is no Idempotency-Key header.
+pagination:
+  supported: false
+  detail: List endpoints (list-sandboxes, list-routegroups, list-clusters, list-resource-plugins) return full arrays; no cursor/offset parameters.
+request_tracing:
+  field: requestId
+  detail: Every error response carries a requestId correlation id in the ErrorResponse envelope.
+error_envelope:
+  schema: ErrorResponse
+  fields: [code, error, requestId]
+  cross_ref: errors/signadot-error-codes.yml
+rate_limiting:
+  documented: false
+  detail: >-
+    Plan-level fair-usage quotas apply (e.g. 50 updates per sandbox; monthly sandbox/test-invocation caps),
+    but no per-request rate-limit response headers are documented in the spec.
+common_query_params:
+  - name: force
+    detail: Force delete/apply for certain resources.
+  - name: version
+    detail: Select a specific resource-plugin version (@semver pinning).

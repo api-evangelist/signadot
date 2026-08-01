@@ -1,0 +1,14 @@
+{
+  "repo": "signadot",
+  "feeds": [
+    {
+      "source": "https://signadotcommunity.slack.com",
+      "feed_url": "https://signadotcommunity.slack.com/blog/rss/",
+      "title": "",
+      "saved": 10,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-07-25T15:00:33Z"
+}

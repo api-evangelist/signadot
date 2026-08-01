@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Signadot API
+  version: 1.0.0
+extends: openapi/signadot-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: signadot
+      x-apievangelist-category: developer-tools
+      x-apievangelist-auth: api-key-header (signadot-api-key)
+      x-apievangelist-base-url: https://api.signadot.com/api/v2
+      x-apievangelist-mcp: https://www.signadot.com/docs/integrations/mcp
+      x-apievangelist-agent-skills: https://github.com/signadot/agent-skills
+  - target: $.info.contact
+    update:
+      name: Signadot Support
+      url: https://signadotcommunity.slack.com
+  - target: $
+    update:
+      x-apievangelist-error-catalog: errors/signadot-error-codes.yml
+      x-apievangelist-conventions: conventions/signadot-conventions.yml
+      x-apievangelist-data-model: data-model/signadot-data-model.yml

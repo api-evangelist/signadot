@@ -1,9 +1,29 @@
 aid: signadot
 name: Signadot
-description: 'Signadot is a company surfaced as a portfolio company of redpoint-ventures and added to
-  the API Evangelist network as a stub for enrichment. Sector: developer-tools. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  Signadot is a Kubernetes-native platform for validating microservices and AI-generated code changes
+  against real dependencies before merge. Its core is environment virtualization: large numbers of
+  lightweight ephemeral "sandboxes" spin up in seconds by routing request-level traffic to only the
+  changed services on a shared cluster, without duplicating the whole stack. Testing capabilities —
+  Jobs (Playwright/Cypress/k6 runners), Smart Tests (AI regression detection), and Plans (reusable
+  validation workflows) — layer on top, and a bundled MCP server plus installable Agent Skills let
+  coding agents (Cursor, Claude Code, Codex) provision environments and validate their own work.
+  Signadot installs as a Kubernetes operator, integrates with service meshes and CI/CD, and exposes a
+  REST control-plane API, a CLI, and a Go SDK.
 url: https://raw.githubusercontent.com/api-evangelist/signadot/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.signadot.com/images/og-image.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,16 +32,162 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Developer Tools
-apis: []
+- Kubernetes
+- Testing
+- Ephemeral Environments
+- Microservices
+- Preview Environments
+- Agentic Development
+- Continuous Integration
+- Developer Experience
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: signadot:signadot-cluster-api
+  name: Signadot Cluster API
+  description: The Cluster API from Signadot — 5 operation(s) for cluster.
+  humanURL: https://www.signadot.com/docs/api
+  baseURL: https://api.signadot.com/api/v2
+  tags:
+  - Cluster
+  properties:
+  - type: OpenAPI
+    url: openapi/signadot-cluster-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/signadot-error-codes.yml
+  - type: DataModel
+    url: data-model/signadot-data-model.yml
+  - type: Conventions
+    url: conventions/signadot-conventions.yml
+- aid: signadot:signadot-orgs-api
+  name: Signadot Orgs API
+  description: The Orgs API from Signadot — 1 operation(s) for orgs.
+  humanURL: https://www.signadot.com/docs/api
+  baseURL: https://api.signadot.com/api/v2
+  tags:
+  - Orgs
+  properties:
+  - type: OpenAPI
+    url: openapi/signadot-orgs-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/signadot-error-codes.yml
+  - type: DataModel
+    url: data-model/signadot-data-model.yml
+  - type: Conventions
+    url: conventions/signadot-conventions.yml
+- aid: signadot:signadot-resourceplugins-api
+  name: Signadot ResourcePlugins API
+  description: The ResourcePlugins API from Signadot — 2 operation(s) for resourceplugins.
+  humanURL: https://www.signadot.com/docs/api
+  baseURL: https://api.signadot.com/api/v2
+  tags:
+  - ResourcePlugins
+  properties:
+  - type: OpenAPI
+    url: openapi/signadot-resourceplugins-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/signadot-error-codes.yml
+  - type: DataModel
+    url: data-model/signadot-data-model.yml
+  - type: Conventions
+    url: conventions/signadot-conventions.yml
+- aid: signadot:signadot-routegroups-api
+  name: Signadot RouteGroups API
+  description: The RouteGroups API from Signadot — 2 operation(s) for routegroups.
+  humanURL: https://www.signadot.com/docs/api
+  baseURL: https://api.signadot.com/api/v2
+  tags:
+  - RouteGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/signadot-routegroups-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/signadot-error-codes.yml
+  - type: DataModel
+    url: data-model/signadot-data-model.yml
+  - type: Conventions
+    url: conventions/signadot-conventions.yml
+- aid: signadot:signadot-sandboxes-api
+  name: Signadot Sandboxes API
+  description: The Sandboxes API from Signadot — 2 operation(s) for sandboxes.
+  humanURL: https://www.signadot.com/docs/api
+  baseURL: https://api.signadot.com/api/v2
+  tags:
+  - Sandboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/signadot-sandboxes-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/signadot-error-codes.yml
+  - type: DataModel
+    url: data-model/signadot-data-model.yml
+  - type: Conventions
+    url: conventions/signadot-conventions.yml
 common:
+- type: DeveloperPortal
+  url: https://www.signadot.com/docs/overview
+- type: Documentation
+  url: https://www.signadot.com/docs/overview
+- type: APIReference
+  url: https://www.signadot.com/docs/api
+- type: GettingStarted
+  url: https://www.signadot.com/docs/getting-started/installation
+- type: Support
+  url: https://signadotcommunity.slack.com
+- type: Blog
+  url: https://www.signadot.com/blog/
+- type: GitHubOrganization
+  url: https://github.com/signadot
+- type: Pricing
+  url: https://www.signadot.com/pricing/
+- type: SignUp
+  url: https://www.signadot.com/signup/
+- type: TermsOfService
+  url: https://www.signadot.com/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.signadot.com/privacy-policy
+- type: StatusPage
+  url: https://status.signadot.com/
+- type: ChangeLog
+  url: changelog/signadot-changelog.yml
+- type: Lifecycle
+  url: lifecycle/signadot-lifecycle.yml
+- type: Packages
+  url: packages/signadot-packages.yml
+- type: SDKs
+  url: packages/signadot-packages.yml
+- type: CLI
+  url: cli/signadot-cli.yml
+- type: MCPServer
+  url: mcp/signadot-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/signadot-llms.txt
+- type: Conformance
+  url: conformance/signadot-conformance.yml
+- type: Compliance
+  url: conformance/signadot-conformance.yml
+- type: Arazzo
+  name: Create and inspect a Signadot sandbox
+  url: arazzo/signadot-create-and-inspect-sandbox.yml
+- type: AgenticAccess
+  url: agentic-access/signadot-agentic-access.yml
+- type: Authentication
+  url: authentication/signadot-authentication.yml
+- type: DomainSecurity
+  url: security/signadot-domain-security.yml
 - type: Website
   url: https://signadot.com/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1
