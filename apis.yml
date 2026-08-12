@@ -131,6 +131,8 @@ apis:
   - type: Conventions
     url: conventions/signadot-conventions.yml
 common:
+- type: Overlay
+  url: overlays/signadot-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://www.signadot.com/docs/overview
 - type: Documentation
