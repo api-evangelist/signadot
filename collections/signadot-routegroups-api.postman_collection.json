@@ -1,0 +1,1289 @@
+{
+  "item": [
+    {
+      "id": "6d13b5c5-404d-4d9e-bf75-845a9d0d3d03",
+      "name": "RouteGroups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6cd3def9-7ecd-4282-bb2b-6bf10e6f7221",
+          "name": "List routegroups",
+          "request": {
+            "name": "List routegroups",
+            "description": {
+              "content": "List all routegroups under the specified Signadot org.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "routegroups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "506290dc-d4a6-4662-9f47-afad316b00bf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"createdAt\": \"string\",\n    \"defaults\": {\n      \"cluster\": [\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"routegroup\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        },\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"sandbox\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        }\n      ]\n    },\n    \"endpoints\": [\n      {\n        \"cluster\": \"string\",\n        \"name\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"cluster\": \"string\",\n        \"name\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"routingKey\": \"string\",\n    \"spec\": {\n      \"cluster\": \"string\",\n      \"description\": \"string\",\n      \"endpoints\": [\n        {\n          \"cluster\": \"string\",\n          \"name\": \"string\",\n          \"target\": \"string\"\n        },\n        {\n          \"cluster\": \"string\",\n          \"name\": \"string\",\n          \"target\": \"string\"\n        }\n      ],\n      \"match\": {\n        \"all\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          }\n        ],\n        \"any\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          }\n        ],\n        \"label\": {\n          \"description\": \"When Label is non-nil, T matches a set of labels L if and only if t.Label.Matches(L).\\nOnly one field may be non-nil.\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"ttl\": {\n        \"duration\": \"string\",\n        \"offsetFrom\": \"string\"\n      }\n    },\n    \"status\": {\n      \"matchedSandboxes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"message\": \"string\",\n      \"ready\": false,\n      \"reason\": \"string\",\n      \"scheduledDeleteTime\": \"string\"\n    },\n    \"updatedAt\": \"string\"\n  },\n  {\n    \"createdAt\": \"string\",\n    \"defaults\": {\n      \"cluster\": [\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"sandbox\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        },\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"sandbox\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        }\n      ]\n    },\n    \"endpoints\": [\n      {\n        \"cluster\": \"string\",\n        \"name\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"cluster\": \"string\",\n        \"name\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"routingKey\": \"string\",\n    \"spec\": {\n      \"cluster\": \"string\",\n      \"description\": \"string\",\n      \"endpoints\": [\n        {\n          \"cluster\": \"string\",\n          \"name\": \"string\",\n          \"target\": \"string\"\n        },\n        {\n          \"cluster\": \"string\",\n          \"name\": \"string\",\n          \"target\": \"string\"\n        }\n      ],\n      \"match\": {\n        \"all\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          }\n        ],\n        \"any\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n          }\n        ],\n        \"label\": {\n          \"description\": \"When Label is non-nil, T matches a set of labels L if and only if t.Label.Matches(L).\\nOnly one field may be non-nil.\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"ttl\": {\n        \"duration\": \"string\",\n        \"offsetFrom\": \"string\"\n      }\n    },\n    \"status\": {\n      \"matchedSandboxes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"message\": \"string\",\n      \"ready\": false,\n      \"reason\": \"string\",\n      \"scheduledDeleteTime\": \"string\"\n    },\n    \"updatedAt\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9811012-734e-4942-b2c2-0596601ddbf2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e1263ed-5d0f-4b53-a630-45f77a421903",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e857bc7-aa92-4f03-82cf-d15af2b29c80",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22d7c38e-a28f-4329-8abf-f9efba695515",
+          "name": "Delete a routegroup",
+          "request": {
+            "name": "Delete a routegroup",
+            "description": {
+              "content": "Delete a given routegroup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "routegroups",
+                ":routegroupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routegroupName",
+                  "description": "(Required) RouteGroup Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5d9bc409-13fe-479f-b326-df52f2b7d22d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20ff9f0c-e9db-4dbe-9ec1-c549763253e3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16821e51-47c0-4dc7-905f-4612cdd9706b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7faafcca-e0b7-4df5-8d81-ee7d517af22d",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a6b4996-b43d-4feb-8c81-71be2560e048",
+          "name": "Get a routegroup",
+          "request": {
+            "name": "Get a routegroup",
+            "description": {
+              "content": "Fetch the details about a given routegroup.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "routegroups",
+                ":routegroupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routegroupName",
+                  "description": "(Required) RouteGroup Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5e4bac45-96d4-4ab8-a3c8-a05d430d03d1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"string\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"ttl\",\n        \"createdAt\": \"string\",\n        \"resourceKind\": \"sandbox\",\n        \"updatedAt\": \"string\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"ttl\",\n        \"createdAt\": \"string\",\n        \"resourceKind\": \"routegroup\",\n        \"updatedAt\": \"string\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"string\",\n      \"name\": \"string\",\n      \"target\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"cluster\": \"string\",\n      \"name\": \"string\",\n      \"target\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"routingKey\": \"string\",\n  \"spec\": {\n    \"cluster\": \"string\",\n    \"description\": \"string\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"string\",\n        \"name\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"cluster\": \"string\",\n        \"name\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"string\",\n        \"value\": \"string\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"string\",\n      \"offsetFrom\": \"string\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"string\",\n      \"string\"\n    ],\n    \"message\": \"string\",\n    \"ready\": true,\n    \"reason\": \"string\",\n    \"scheduledDeleteTime\": \"string\"\n  },\n  \"updatedAt\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7506f049-eba9-4b4c-8891-a45f58d1b3df",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c424f35-a995-411d-8a88-f88afb3aa6d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d560af0-7fb6-484a-a6eb-0fbb1d3219db",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fda07a2c-f5df-4552-89fd-b8695c8679e5",
+          "name": "Create or update a routegroup",
+          "request": {
+            "name": "Create or update a routegroup",
+            "description": {
+              "content": "Creates or updates a routegroup with the provided parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "routegroups",
+                ":routegroupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routegroupName",
+                  "description": "(Required) RouteGroup Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"description\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      },\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\"\n  },\n  \"updatedAt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07fd1cc7-b821-431d-847c-125e68253f8c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"description\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      },\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\"\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"description\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      },\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\"\n  },\n  \"updatedAt\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d5b3edb-1b14-4014-b9dd-0a9e3e2d41b2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"description\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      },\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\"\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14c8cfc5-224c-4ea7-9b97-88c3bd4e3fc2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"description\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      },\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\"\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dd99a47-5bcd-4c50-94ed-f76d45334eba",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "routegroups",
+                    ":routegroupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routegroupName",
+                      "description": "(Required) RouteGroup Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"cluster\": \"<string>\",\n      \"name\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"description\": \"<string>\",\n    \"endpoints\": [\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      },\n      {\n        \"cluster\": \"<string>\",\n        \"name\": \"<string>\",\n        \"target\": \"<string>\"\n      }\n    ],\n    \"match\": {\n      \"all\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"any\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/routeGroup.Match detected>\"\n        }\n      ],\n      \"label\": {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    }\n  },\n  \"status\": {\n    \"matchedSandboxes\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\"\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1925,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//api.signadot.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98cf72da-bf4c-4601-9c53-f22f2f8795a0",
+    "name": "Signadot Cluster RouteGroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for Signadot Sandboxes",
+      "type": "text/plain"
+    }
+  }
+}

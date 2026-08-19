@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Signadot Cluster RouteGroups API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RouteGroups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List routegroups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/routegroups",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              }
+            ]
+          },
+          "docs": "List all routegroups under the specified Signadot org."
+        },
+        {
+          "info": {
+            "name": "Get a routegroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/routegroups/:routegroupName",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "routegroupName",
+                "value": "",
+                "type": "path",
+                "description": "RouteGroup Name"
+              }
+            ]
+          },
+          "docs": "Fetch the details about a given routegroup."
+        },
+        {
+          "info": {
+            "name": "Create or update a routegroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/orgs/:orgName/routegroups/:routegroupName",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "routegroupName",
+                "value": "",
+                "type": "path",
+                "description": "RouteGroup Name"
+              }
+            ]
+          },
+          "docs": "Creates or updates a routegroup with the provided parameters."
+        },
+        {
+          "info": {
+            "name": "Delete a routegroup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/orgs/:orgName/routegroups/:routegroupName",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "routegroupName",
+                "value": "",
+                "type": "path",
+                "description": "RouteGroup Name"
+              }
+            ]
+          },
+          "docs": "Delete a given routegroup."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

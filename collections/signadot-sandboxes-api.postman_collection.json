@@ -1,0 +1,1316 @@
+{
+  "item": [
+    {
+      "id": "bfb47883-ae1f-4f7f-ae7e-78ce3eecad68",
+      "name": "Sandboxes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "90c554c3-9bb1-474b-9b3d-64fc3f597f4c",
+          "name": "List sandboxes",
+          "request": {
+            "name": "List sandboxes",
+            "description": {
+              "content": "List all sandboxes under the specified Signadot org.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "sandboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "980bf10a-c9d1-4b31-874d-12c0d292e2e1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"createdAt\": \"string\",\n    \"defaults\": {\n      \"cluster\": [\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"sandbox\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        },\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"sandbox\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        }\n      ]\n    },\n    \"endpoints\": [\n      {\n        \"baselineUrl\": \"string\",\n        \"host\": \"string\",\n        \"name\": \"string\",\n        \"port\": 800,\n        \"protocol\": \"string\",\n        \"routeType\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"baselineUrl\": \"string\",\n        \"host\": \"string\",\n        \"name\": \"string\",\n        \"port\": 8972,\n        \"protocol\": \"string\",\n        \"routeType\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"routingKey\": \"string\",\n    \"spec\": {\n      \"cluster\": \"string\",\n      \"forks\": [\n        {\n          \"customizations\": {\n            \"description\": \"Customizations specify the customizations we will apply on the fork\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endpoints\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"forkOf\": {\n            \"description\": \"ForkOf specifies the target workload that we will be forking.  In this usage\\nthe Kind of the ForkOf object must not be a service.\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\"\n        },\n        {\n          \"customizations\": {\n            \"description\": \"Customizations specify the customizations we will apply on the fork\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endpoints\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"forkOf\": {\n            \"description\": \"ForkOf specifies the target workload that we will be forking.  In this usage\\nthe Kind of the ForkOf object must not be a service.\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\"\n        }\n      ],\n      \"defaultRouteGroup\": {\n        \"endpoints\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"description\": \"string\",\n      \"disableSandboxTrafficManager\": false,\n      \"endpoints\": [\n        {\n          \"host\": \"string\",\n          \"name\": \"string\",\n          \"port\": 8404,\n          \"protocol\": \"string\"\n        },\n        {\n          \"host\": \"string\",\n          \"name\": \"string\",\n          \"port\": 1933,\n          \"protocol\": \"string\"\n        }\n      ],\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"middleware\": [\n        {\n          \"args\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"match\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"name\": \"string\"\n        },\n        {\n          \"args\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"match\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"name\": \"string\"\n        }\n      ],\n      \"resources\": [\n        {\n          \"name\": \"string\",\n          \"params\": {\n            \"key_0\": \"string\"\n          },\n          \"plugin\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"params\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"plugin\": \"string\"\n        }\n      ],\n      \"routing\": {\n        \"forwards\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"ttl\": {\n        \"duration\": \"string\",\n        \"offsetFrom\": \"string\"\n      },\n      \"virtual\": [\n        {\n          \"name\": \"string\",\n          \"workload\": {\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"namespace\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"workload\": {\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"namespace\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"status\": {\n      \"forwards\": [\n        {\n          \"name\": \"string\",\n          \"tunnel\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"tunnel\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"jobs\": {\n        \"phaseCounts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"message\": \"string\",\n      \"ready\": true,\n      \"reason\": \"string\",\n      \"scheduledDeleteTime\": \"string\",\n      \"testExecutions\": {\n        \"checks\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"phaseCounts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"trafficDiffs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"updatedAt\": \"string\"\n  },\n  {\n    \"createdAt\": \"string\",\n    \"defaults\": {\n      \"cluster\": [\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"routegroup\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        },\n        {\n          \"class\": \"ttl\",\n          \"createdAt\": \"string\",\n          \"resourceKind\": \"routegroup\",\n          \"updatedAt\": \"string\",\n          \"value\": \"\"\n        }\n      ]\n    },\n    \"endpoints\": [\n      {\n        \"baselineUrl\": \"string\",\n        \"host\": \"string\",\n        \"name\": \"string\",\n        \"port\": 7776,\n        \"protocol\": \"string\",\n        \"routeType\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      },\n      {\n        \"baselineUrl\": \"string\",\n        \"host\": \"string\",\n        \"name\": \"string\",\n        \"port\": 8920,\n        \"protocol\": \"string\",\n        \"routeType\": \"string\",\n        \"target\": \"string\",\n        \"url\": \"string\"\n      }\n    ],\n    \"name\": \"string\",\n    \"routingKey\": \"string\",\n    \"spec\": {\n      \"cluster\": \"string\",\n      \"forks\": [\n        {\n          \"customizations\": {\n            \"description\": \"Customizations specify the customizations we will apply on the fork\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endpoints\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"forkOf\": {\n            \"description\": \"ForkOf specifies the target workload that we will be forking.  In this usage\\nthe Kind of the ForkOf object must not be a service.\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\"\n        },\n        {\n          \"customizations\": {\n            \"description\": \"Customizations specify the customizations we will apply on the fork\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"endpoints\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"forkOf\": {\n            \"description\": \"ForkOf specifies the target workload that we will be forking.  In this usage\\nthe Kind of the ForkOf object must not be a service.\",\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\"\n        }\n      ],\n      \"defaultRouteGroup\": {\n        \"endpoints\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"description\": \"string\",\n      \"disableSandboxTrafficManager\": true,\n      \"endpoints\": [\n        {\n          \"host\": \"string\",\n          \"name\": \"string\",\n          \"port\": 1716,\n          \"protocol\": \"string\"\n        },\n        {\n          \"host\": \"string\",\n          \"name\": \"string\",\n          \"port\": 4383,\n          \"protocol\": \"string\"\n        }\n      ],\n      \"labels\": {\n        \"key_0\": \"string\"\n      },\n      \"middleware\": [\n        {\n          \"args\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"match\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"name\": \"string\"\n        },\n        {\n          \"args\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"match\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"name\": \"string\"\n        }\n      ],\n      \"resources\": [\n        {\n          \"name\": \"string\",\n          \"params\": {\n            \"key_0\": \"string\"\n          },\n          \"plugin\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"params\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          },\n          \"plugin\": \"string\"\n        }\n      ],\n      \"routing\": {\n        \"forwards\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"ttl\": {\n        \"duration\": \"string\",\n        \"offsetFrom\": \"string\"\n      },\n      \"virtual\": [\n        {\n          \"name\": \"string\",\n          \"workload\": {\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"namespace\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"workload\": {\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"namespace\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"status\": {\n      \"forwards\": [\n        {\n          \"name\": \"string\",\n          \"tunnel\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"name\": \"string\",\n          \"tunnel\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"jobs\": {\n        \"phaseCounts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"message\": \"string\",\n      \"ready\": true,\n      \"reason\": \"string\",\n      \"scheduledDeleteTime\": \"string\",\n      \"testExecutions\": {\n        \"checks\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"phaseCounts\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"trafficDiffs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"updatedAt\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4260e544-976a-4ebe-b470-5b68e8ec13e1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ec2efff-86f0-4ccb-852f-06d4a323a6da",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "727f2514-e452-4eda-90ca-532547ddc9a5",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e64a1b75-9cfa-48ec-958d-e65dd2eb4a07",
+          "name": "Delete a sandbox",
+          "request": {
+            "name": "Delete a sandbox",
+            "description": {
+              "content": "Delete a given sandbox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "sandboxes",
+                ":sandboxName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "<boolean>",
+                  "description": "force"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sandboxName",
+                  "description": "(Required) Sandbox Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "02213177-495f-4cd5-bf4e-6e731b305890",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8225acab-6b67-4e0a-a5be-4918bc997cd0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c5a3860-5c11-4668-a294-4591167e0a86",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91ef30ca-46fd-49f5-9d05-f3f70bb8c05c",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "301e43b3-3239-46e0-9a80-fc2861447521",
+          "name": "Get a sandbox",
+          "request": {
+            "name": "Get a sandbox",
+            "description": {
+              "content": "Fetch the details about a given sandbox.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "sandboxes",
+                ":sandboxName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sandboxName",
+                  "description": "(Required) Sandbox Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b99adb33-4b30-43c9-aba5-5692dc242bae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"string\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"ttl\",\n        \"createdAt\": \"string\",\n        \"resourceKind\": \"sandbox\",\n        \"updatedAt\": \"string\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"ttl\",\n        \"createdAt\": \"string\",\n        \"resourceKind\": \"routegroup\",\n        \"updatedAt\": \"string\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"string\",\n      \"host\": \"string\",\n      \"name\": \"string\",\n      \"port\": 250,\n      \"protocol\": \"string\",\n      \"routeType\": \"string\",\n      \"target\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"baselineUrl\": \"string\",\n      \"host\": \"string\",\n      \"name\": \"string\",\n      \"port\": 5630,\n      \"protocol\": \"string\",\n      \"routeType\": \"string\",\n      \"target\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"name\": \"string\",\n  \"routingKey\": \"string\",\n  \"spec\": {\n    \"cluster\": \"string\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"string\",\n            \"port\": 5243,\n            \"protocol\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"port\": 3322,\n            \"protocol\": \"string\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"string\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"string\",\n            \"port\": 6730,\n            \"protocol\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"port\": 4211,\n            \"protocol\": \"string\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"string\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"string\",\n          \"target\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"target\": \"string\"\n        }\n      ]\n    },\n    \"description\": \"string\",\n    \"disableSandboxTrafficManager\": true,\n    \"endpoints\": [\n      {\n        \"host\": \"string\",\n        \"name\": \"string\",\n        \"port\": 6330,\n        \"protocol\": \"string\"\n      },\n      {\n        \"host\": \"string\",\n        \"name\": \"string\",\n        \"port\": 4907,\n        \"protocol\": \"string\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"string\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"string\"\n          },\n          {\n            \"workload\": \"string\"\n          }\n        ],\n        \"name\": \"string\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"string\"\n          },\n          {\n            \"workload\": \"string\"\n          }\n        ],\n        \"name\": \"string\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"string\",\n        \"params\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\",\n          \"key_2\": \"string\"\n        },\n        \"plugin\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"params\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        },\n        \"plugin\": \"string\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"string\",\n          \"name\": \"string\",\n          \"port\": 3707,\n          \"toLocal\": \"string\"\n        },\n        {\n          \"appProtocol\": \"string\",\n          \"name\": \"string\",\n          \"port\": 544,\n          \"toLocal\": \"string\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"string\",\n      \"offsetFrom\": \"string\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"string\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"string\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"string\",\n    \"ready\": true,\n    \"reason\": \"string\",\n    \"scheduledDeleteTime\": \"string\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": 4288,\n        \"passed\": 2919\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": 5198,\n        \"red\": 2940,\n        \"yellow\": 2572\n      }\n    }\n  },\n  \"updatedAt\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8a5b203-f9df-4845-a709-84b412f89c11",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3071815a-0772-4377-afbf-d6af0b08dfd9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70f2552d-58e2-42de-af00-1c8f657e253a",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0084f183-4203-4545-9e1e-ae2fe35ae5f7",
+          "name": "Create or update a sandbox",
+          "request": {
+            "name": "Create or update a sandbox",
+            "description": {
+              "content": "Creates or updates a sandbox with the provided parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgName",
+                "sandboxes",
+                ":sandboxName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgName",
+                  "description": "(Required) Signadot Org Name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sandboxName",
+                  "description": "(Required) Sandbox Name"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "signadot-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"<string>\",\n          \"name\": \"<string>\",\n          \"namespace\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"<string>\",\n          \"name\": \"<string>\",\n          \"namespace\": \"<string>\"\n        },\n        \"name\": \"<string>\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        }\n      ]\n    },\n    \"description\": \"<string>\",\n    \"disableSandboxTrafficManager\": \"<boolean>\",\n    \"endpoints\": [\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        },\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"<string>\",\n          \"name\": \"<string>\",\n          \"namespace\": \"<string>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"<string>\",\n          \"name\": \"<string>\",\n          \"namespace\": \"<string>\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": \"<integer>\",\n        \"passed\": \"<integer>\"\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": \"<integer>\",\n        \"red\": \"<integer>\",\n        \"yellow\": \"<integer>\"\n      }\n    }\n  },\n  \"updatedAt\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5eb046c8-c918-4551-ab54-e5f8116e31fd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        }\n      ]\n    },\n    \"description\": \"<string>\",\n    \"disableSandboxTrafficManager\": \"<boolean>\",\n    \"endpoints\": [\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        },\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": \"<integer>\",\n        \"passed\": \"<integer>\"\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": \"<integer>\",\n        \"red\": \"<integer>\",\n        \"yellow\": \"<integer>\"\n      }\n    }\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        }\n      ]\n    },\n    \"description\": \"<string>\",\n    \"disableSandboxTrafficManager\": \"<boolean>\",\n    \"endpoints\": [\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        },\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": \"<integer>\",\n        \"passed\": \"<integer>\"\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": \"<integer>\",\n        \"red\": \"<integer>\",\n        \"yellow\": \"<integer>\"\n      }\n    }\n  },\n  \"updatedAt\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4a036f9-15f7-498b-a19c-307fe7cae69d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        }\n      ]\n    },\n    \"description\": \"<string>\",\n    \"disableSandboxTrafficManager\": \"<boolean>\",\n    \"endpoints\": [\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        },\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": \"<integer>\",\n        \"passed\": \"<integer>\"\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": \"<integer>\",\n        \"red\": \"<integer>\",\n        \"yellow\": \"<integer>\"\n      }\n    }\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4d09a05-94fa-4600-880e-313d985c9d84",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        }\n      ]\n    },\n    \"description\": \"<string>\",\n    \"disableSandboxTrafficManager\": \"<boolean>\",\n    \"endpoints\": [\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        },\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": \"<integer>\",\n        \"passed\": \"<integer>\"\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": \"<integer>\",\n        \"red\": \"<integer>\",\n        \"yellow\": \"<integer>\"\n      }\n    }\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b9abbf9-0ffa-43c6-af7d-da3be8f21195",
+              "name": "Bad Gateway",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgName",
+                    "sandboxes",
+                    ":sandboxName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgName",
+                      "description": "(Required) Signadot Org Name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sandboxName",
+                      "description": "(Required) Sandbox Name"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "signadot-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"createdAt\": \"<string>\",\n  \"defaults\": {\n    \"cluster\": [\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      },\n      {\n        \"class\": \"<string>\",\n        \"createdAt\": \"<string>\",\n        \"resourceKind\": \"<string>\",\n        \"updatedAt\": \"<string>\",\n        \"value\": \"\"\n      }\n    ]\n  },\n  \"endpoints\": [\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"baselineUrl\": \"<string>\",\n      \"host\": \"<string>\",\n      \"name\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"protocol\": \"<string>\",\n      \"routeType\": \"<string>\",\n      \"target\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"routingKey\": \"<string>\",\n  \"spec\": {\n    \"cluster\": \"<string>\",\n    \"forks\": [\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      },\n      {\n        \"customizations\": {\n          \"env\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"images\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"patch\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"endpoints\": [\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"port\": \"<integer>\",\n            \"protocol\": \"<string>\"\n          }\n        ],\n        \"forkOf\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        },\n        \"name\": \"<string>\"\n      }\n    ],\n    \"defaultRouteGroup\": {\n      \"endpoints\": [\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"target\": \"<string>\"\n        }\n      ]\n    },\n    \"description\": \"<string>\",\n    \"disableSandboxTrafficManager\": \"<boolean>\",\n    \"endpoints\": [\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      },\n      {\n        \"host\": \"<string>\",\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"protocol\": \"<string>\"\n      }\n    ],\n    \"labels\": {\n      \"key_0\": \"<string>\"\n    },\n    \"middleware\": [\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      },\n      {\n        \"args\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\",\n            \"valueFrom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"match\": [\n          {\n            \"workload\": \"<string>\"\n          },\n          {\n            \"workload\": \"<string>\"\n          }\n        ],\n        \"name\": \"<string>\"\n      }\n    ],\n    \"resources\": [\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"params\": {\n          \"key_0\": \"<string>\"\n        },\n        \"plugin\": \"<string>\"\n      }\n    ],\n    \"routing\": {\n      \"forwards\": [\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        },\n        {\n          \"appProtocol\": \"<string>\",\n          \"name\": \"<string>\",\n          \"port\": \"<integer>\",\n          \"toLocal\": \"<string>\"\n        }\n      ]\n    },\n    \"ttl\": {\n      \"duration\": \"<string>\",\n      \"offsetFrom\": \"<string>\"\n    },\n    \"virtual\": [\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"workload\": {\n          \"kind\": \"Deployment\",\n          \"name\": \"my-frontend\",\n          \"namespace\": \"default\"\n        }\n      }\n    ]\n  },\n  \"status\": {\n    \"forwards\": [\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"tunnel\": {\n          \"health\": {\n            \"connected\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastCheckTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lastConnectedTime\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      }\n    ],\n    \"jobs\": {\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"message\": \"<string>\",\n    \"ready\": \"<boolean>\",\n    \"reason\": \"<string>\",\n    \"scheduledDeleteTime\": \"<string>\",\n    \"testExecutions\": {\n      \"checks\": {\n        \"failed\": \"<integer>\",\n        \"passed\": \"<integer>\"\n      },\n      \"phaseCounts\": [\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"count\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"phase\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"trafficDiffs\": {\n        \"green\": \"<integer>\",\n        \"red\": \"<integer>\",\n        \"yellow\": \"<integer>\"\n      }\n    }\n  },\n  \"updatedAt\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Gateway",
+              "code": 502,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8290,\n  \"error\": \"string\",\n  \"requestId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "//api.signadot.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9461e567-e852-4535-ac7a-068558e5cf60",
+    "name": "Signadot Cluster Sandboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for Signadot Sandboxes",
+      "type": "text/plain"
+    }
+  }
+}

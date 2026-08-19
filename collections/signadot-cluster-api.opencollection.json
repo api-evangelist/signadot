@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Signadot Cluster API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              }
+            ]
+          },
+          "docs": "List clusters."
+        },
+        {
+          "info": {
+            "name": "Get a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              }
+            ]
+          },
+          "docs": "Get a cluster."
+        },
+        {
+          "info": {
+            "name": "Add a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              }
+            ]
+          },
+          "docs": "Add a Kubernetes cluster to Signadot."
+        },
+        {
+          "info": {
+            "name": "Remove a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              }
+            ]
+          },
+          "docs": "Remove a Kubernetes cluster from Signadot."
+        },
+        {
+          "info": {
+            "name": "Create cluster token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/tokens",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              }
+            ]
+          },
+          "docs": "Create a new token for connecting a cluster."
+        },
+        {
+          "info": {
+            "name": "List cluster tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/tokens/",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              }
+            ]
+          },
+          "docs": "List the cluster tokens associated with a cluster."
+        },
+        {
+          "info": {
+            "name": "Get a cluster token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/tokens/:tokenId",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token Id"
+              }
+            ]
+          },
+          "docs": "Get a cluster token associated with a cluster."
+        },
+        {
+          "info": {
+            "name": "Delete cluster token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/orgs/:orgName/clusters/:clusterName/tokens/:tokenId",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Cluster Name"
+              },
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token Id"
+              }
+            ]
+          },
+          "docs": "Delete a cluster token associated with a cluster."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

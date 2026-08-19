@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Signadot Cluster ResourcePlugins API",
+    "version": "2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ResourcePlugins",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List resource plugins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/resource-plugins",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "'latest' (default) returns only the highest-semver version of each plugin; 'all' returns every published version"
+              }
+            ]
+          },
+          "docs": "List resource plugins under the specified Signadot org. By default returns only the highest-semver version of each plugin. Pass `?version=all` to expand the response into one row per published (name, version), sorted by name then semver-descending. `?version=latest` is accepted as an explicit alias for the default."
+        },
+        {
+          "info": {
+            "name": "Get the requested resource plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/orgs/:orgName/resource-plugins/:pluginName",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "pluginName",
+                "value": "",
+                "type": "path",
+                "description": "Resource plugin name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Resource plugin version (semver); omit for latest"
+              }
+            ]
+          },
+          "docs": "Get the specified resource plugin. Omit the version query parameter to get the latest version."
+        },
+        {
+          "info": {
+            "name": "Apply a resource plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/orgs/:orgName/resource-plugins/:pluginName",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "pluginName",
+                "value": "",
+                "type": "path",
+                "description": "Resource plugin name"
+              }
+            ]
+          },
+          "docs": "Creates a new version of a resource plugin. The body's `name` field carries the wire form `bareName[@semver]` (e.g. `my-plugin@1.2.0`); its bare part must match the URL path name. A bare-name form (no `@`) publishes the default version `0.0.0`. Versions are immutable; PUTting an existing (name, version) pair returns 409. The version suffix must be a concrete semver; \"latest\" is only accepted on the read and delete query parameters."
+        },
+        {
+          "info": {
+            "name": "Delete a resource plugin",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/orgs/:orgName/resource-plugins/:pluginName",
+            "params": [
+              {
+                "name": "orgName",
+                "value": "",
+                "type": "path",
+                "description": "Signadot Org Name"
+              },
+              {
+                "name": "pluginName",
+                "value": "",
+                "type": "path",
+                "description": "Resource plugin name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Resource plugin version (semver); omit for latest"
+              }
+            ]
+          },
+          "docs": "Delete a resource plugin version. Omit the version query parameter to delete the latest version. Deletion is blocked when any sandbox references the specific version being deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
