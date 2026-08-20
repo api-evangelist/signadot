@@ -72,6 +72,8 @@ apis:
   humanURL: https://www.signadot.com/docs/api
   baseURL: https://api.signadot.com/api/v2
   tags:
+  - Organization
+  tags_raw:
   - Orgs
   properties:
   - type: OpenAPI
