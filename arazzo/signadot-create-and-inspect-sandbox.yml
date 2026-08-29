@@ -4,62 +4,62 @@ info:
   version: 1.0.0
   summary: Create a sandbox, poll it until ready to read its preview endpoints, then delete it.
 sourceDescriptions:
-  - name: signadot
-    url: ../openapi/signadot-openapi-original.yml
-    type: openapi
+- name: sandboxesApi
+  url: ../openapi/signadot-sandboxes-api-openapi.yml
+  type: openapi
 workflows:
-  - workflowId: create-and-inspect-sandbox
-    summary: Create a sandbox, retrieve it, and delete it.
-    inputs:
-      type: object
-      properties:
-        orgName:
-          type: string
-        sandboxName:
-          type: string
-        sandboxSpec:
-          type: object
-      required: [orgName, sandboxName, sandboxSpec]
-    steps:
-      - stepId: create-sandbox
-        operationId: apply-sandbox
-        parameters:
-          - name: orgName
-            in: path
-            value: $inputs.orgName
-          - name: sandboxName
-            in: path
-            value: $inputs.sandboxName
-        requestBody:
-          contentType: application/json
-          payload: $inputs.sandboxSpec
-        successCriteria:
-          - condition: $statusCode == 200
-        outputs:
-          name: $response.body#/name
-      - stepId: get-sandbox
-        operationId: get-sandbox
-        parameters:
-          - name: orgName
-            in: path
-            value: $inputs.orgName
-          - name: sandboxName
-            in: path
-            value: $steps.create-sandbox.outputs.name
-        successCriteria:
-          - condition: $statusCode == 200
-        outputs:
-          endpoints: $response.body#/endpoints
-      - stepId: delete-sandbox
-        operationId: delete-sandbox
-        parameters:
-          - name: orgName
-            in: path
-            value: $inputs.orgName
-          - name: sandboxName
-            in: path
-            value: $inputs.sandboxName
-        successCriteria:
-          - condition: $statusCode == 200
+- workflowId: create-and-inspect-sandbox
+  summary: Create a sandbox, retrieve it, and delete it.
+  inputs:
+    type: object
+    properties:
+      orgName:
+        type: string
+      sandboxName:
+        type: string
+      sandboxSpec:
+        type: object
+    required: [orgName, sandboxName, sandboxSpec]
+  steps:
+  - stepId: create-sandbox
+    operationId: apply-sandbox
+    parameters:
+    - name: orgName
+      in: path
+      value: $inputs.orgName
+    - name: sandboxName
+      in: path
+      value: $inputs.sandboxName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.sandboxSpec
+    successCriteria:
+    - condition: $statusCode == 200
     outputs:
-      endpoints: $steps.get-sandbox.outputs.endpoints
+      name: $response.body#/name
+  - stepId: get-sandbox
+    operationId: get-sandbox
+    parameters:
+    - name: orgName
+      in: path
+      value: $inputs.orgName
+    - name: sandboxName
+      in: path
+      value: $steps.create-sandbox.outputs.name
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      endpoints: $response.body#/endpoints
+  - stepId: delete-sandbox
+    operationId: delete-sandbox
+    parameters:
+    - name: orgName
+      in: path
+      value: $inputs.orgName
+    - name: sandboxName
+      in: path
+      value: $inputs.sandboxName
+    successCriteria:
+    - condition: $statusCode == 200
+  outputs:
+    endpoints: $steps.get-sandbox.outputs.endpoints
