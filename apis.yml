@@ -135,6 +135,8 @@ apis:
   humanURL: https://www.signadot.com/docs/api
   baseURL: https://api.signadot.com/api/v2
   tags:
+  - Sandbox
+  tags_raw:
   - Sandboxes
   properties:
   - type: OpenAPI
