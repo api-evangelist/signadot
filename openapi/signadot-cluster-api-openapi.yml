@@ -1,18 +1,16 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   contact: {}
   description: API for Signadot Sandboxes
   title: Signadot Cluster API
   version: '2.0'
-host: api.signadot.com
-basePath: /api/v2
+servers:
+- url: https://api.signadot.com/api/v2
 tags:
 - name: Cluster
 paths:
   /orgs/{orgName}/clusters/:
     get:
-      consumes:
-      - application/json
       description: List clusters.
       operationId: list-clusters
       parameters:
@@ -20,29 +18,36 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            items:
-              $ref: '#/definitions/Cluster'
-            type: array
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Cluster'
+                type: array
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: List clusters
@@ -50,8 +55,6 @@ paths:
       - Cluster
   /orgs/{orgName}/clusters/{clusterName}/:
     delete:
-      consumes:
-      - application/json
       description: Remove a Kubernetes cluster from Signadot.
       operationId: remove-cluster
       parameters:
@@ -59,41 +62,47 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
         x-example: my-cluster
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/EmptyResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: Remove a cluster
       tags:
       - Cluster
     get:
-      consumes:
-      - application/json
       description: Get a cluster.
       operationId: get-cluster
       parameters:
@@ -101,40 +110,46 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/Cluster'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: Get a cluster
       tags:
       - Cluster
     put:
-      consumes:
-      - application/json
       description: Add a Kubernetes cluster to Signadot.
       operationId: add-cluster
       parameters:
@@ -142,33 +157,41 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
         x-example: my-cluster
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/Cluster'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: Add a cluster
@@ -176,8 +199,6 @@ paths:
       - Cluster
   /orgs/{orgName}/clusters/{clusterName}/tokens:
     post:
-      consumes:
-      - application/json
       description: Create a new token for connecting a cluster.
       operationId: create-cluster-token
       parameters:
@@ -185,21 +206,23 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
         x-example: my-new-cluster
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/ClusterToken'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterToken'
       security:
       - ApiKeyAuth: []
       summary: Create cluster token
@@ -207,8 +230,6 @@ paths:
       - Cluster
   /orgs/{orgName}/clusters/{clusterName}/tokens/:
     get:
-      consumes:
-      - application/json
       description: List the cluster tokens associated with a cluster.
       operationId: list-cluster-tokens
       parameters:
@@ -216,23 +237,25 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
         x-example: my-new-cluster
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            items:
-              $ref: '#/definitions/ClusterToken'
-            type: array
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ClusterToken'
+                type: array
       security:
       - ApiKeyAuth: []
       summary: List cluster tokens
@@ -240,8 +263,6 @@ paths:
       - Cluster
   /orgs/{orgName}/clusters/{clusterName}/tokens/{tokenId}:
     delete:
-      consumes:
-      - application/json
       description: Delete a cluster token associated with a cluster.
       operationId: delete-cluster-token
       parameters:
@@ -249,35 +270,36 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
         x-example: my-new-cluster
+        schema:
+          type: string
       - description: Token Id
         in: path
         name: tokenId
         required: true
-        type: string
         x-example: kq6mtksk7mn5
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/EmptyResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
       security:
       - ApiKeyAuth: []
       summary: Delete cluster token
       tags:
       - Cluster
     get:
-      consumes:
-      - application/json
       description: Get a cluster token associated with a cluster.
       operationId: get-cluster-token
       parameters:
@@ -285,236 +307,240 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Cluster Name
         in: path
         name: clusterName
         required: true
-        type: string
         x-example: my-new-cluster
+        schema:
+          type: string
       - description: Token Id
         in: path
         name: tokenId
         required: true
-        type: string
         x-example: kq6mtksk7mn5
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/ClusterToken'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterToken'
       security:
       - ApiKeyAuth: []
       summary: Get a cluster token
       tags:
       - Cluster
-definitions:
-  Cluster:
-    properties:
-      clusterConfig:
-        allOf:
-        - $ref: '#/definitions/config.ClusterConfig'
-        description: Cluster config read from the cluster
-      createdAt:
-        description: The time when this cluster was registered with Signadot.
-        type: string
-      name:
-        description: The name of the cluster.
-        type: string
-      operator:
-        allOf:
-        - $ref: '#/definitions/cluster.Operator'
-        description: Information about the Signadot Operator in this cluster.
-    type: object
-  config.TrafficCaptureConfig:
-    properties:
-      enabled:
-        type: boolean
-      requestHeadersElide:
-        items:
+components:
+  schemas:
+    Cluster:
+      properties:
+        clusterConfig:
+          allOf:
+          - $ref: '#/components/schemas/config.ClusterConfig'
+          description: Cluster config read from the cluster
+        createdAt:
+          description: The time when this cluster was registered with Signadot.
           type: string
-        type: array
-      responseHeadersElide:
-        items:
+        name:
+          description: The name of the cluster.
           type: string
-        type: array
-    type: object
-  config.TrafficManagerConfig:
-    properties:
-      enabled:
-        type: boolean
-    type: object
-  config.LinkerdSignadotOperator:
-    properties:
-      podAnnotations:
-        additionalProperties:
-          type: string
-        type: object
-    type: object
-  config.SandboxTrafficManagerConfig:
-    properties:
-      enabled:
-        type: boolean
-    type: object
-  ClusterToken:
-    properties:
-      createdAt:
-        description: The time when this cluster was registered with Signadot.
-        type: string
-      id:
-        description: The ID of this token
-        type: string
-      maskedValue:
-        description: A Masked token value.
-        type: string
-      status:
-        allOf:
-        - $ref: '#/definitions/ClusterTokenStatus'
-        description: Token status.
-      token:
-        description: The token value.
-        type: string
-    type: object
-  EmptyResponse:
-    type: object
-  config.IstioConfig:
-    properties:
-      enableHostRouting:
-        description: Deprecated fields
-        type: boolean
-      enabled:
-        type: boolean
-      operator:
-        $ref: '#/definitions/config.IstioSignadotOperator'
-    type: object
-  config.IstioSignadotOperator:
-    properties:
-      podLabels:
-        additionalProperties:
-          type: string
-        type: object
-    type: object
-  config.DefaultHeaderClass:
-    enum:
-    - baggage
-    - tracestate
-    type: string
-    x-enum-varnames:
-    - DefaultHeaderBaggage
-    - DefaultHeaderTraceState
-  ClusterTokenStatus:
-    properties:
-      lastConnectedAt:
-        description: The last time at which this token was used to connect.
-        type: string
-      lastConnectedIp:
-        description: The last IP address from which this token connected.
-        type: string
-    type: object
-  config.ClusterConfig:
-    properties:
-      allowOrphanedResources:
-        type: boolean
-      allowedNamespaces:
-        items:
-          type: string
-        type: array
-      controlPlane:
-        $ref: '#/definitions/config.ControlPlaneConfig'
-      routing:
-        $ref: '#/definitions/config.RoutingConfig'
-      sandboxTrafficManager:
-        allOf:
-        - $ref: '#/definitions/config.SandboxTrafficManagerConfig'
-        description: Deprecated field
-      trafficCapture:
-        $ref: '#/definitions/config.TrafficCaptureConfig'
-      trafficManager:
-        $ref: '#/definitions/config.TrafficManagerConfig'
-    type: object
-  ErrorResponse:
-    properties:
-      code:
-        type: integer
-      error:
-        type: string
-      requestId:
-        type: string
-    type: object
-  config.GatewayAPIConfig:
-    properties:
-      enabled:
-        type: boolean
-      preservedAnnotations:
-        items:
-          type: string
-        type: array
-      preservedLabels:
-        items:
-          type: string
-        type: array
-    type: object
-  config.RoutingConfig:
-    properties:
-      customHeaders:
-        items:
-          type: string
-        type: array
-      defaultHeaders:
-        items:
-          $ref: '#/definitions/config.DefaultHeaderClass'
-        type: array
-      gatewayAPI:
-        $ref: '#/definitions/config.GatewayAPIConfig'
-      iptablesMode:
-        type: string
-      istio:
-        $ref: '#/definitions/config.IstioConfig'
-      linkerd:
-        $ref: '#/definitions/config.LinkerdConfig'
-      queryParamRouting:
-        $ref: '#/definitions/config.QueryParamRoutingConfig'
-    type: object
-  config.QueryParamRoutingConfig:
-    properties:
-      enabled:
-        type: boolean
-      paramName:
-        type: string
-    type: object
-  config.LinkerdConfig:
-    properties:
-      enabled:
-        type: boolean
-      operator:
-        $ref: '#/definitions/config.LinkerdSignadotOperator'
-    type: object
-  config.ControlPlaneConfig:
-    properties:
-      disabled:
-        description: control plane can be disabled
-        type: boolean
-      proxy:
-        description: control plane proxy can be "enabled" or "disabled"
-        type: string
-      tunnelAddr:
-        type: string
-      tunnelTLS:
-        type: boolean
-    type: object
-  cluster.Operator:
-    properties:
-      version:
-        description: 'The operator version of the cluster.  This may be
+        operator:
+          allOf:
+          - $ref: '#/components/schemas/cluster.Operator'
+          description: Information about the Signadot Operator in this cluster.
+      type: object
+    cluster.Operator:
+      properties:
+        version:
+          description: 'The operator version of the cluster.  This may be
 
-          nil if the cluster has not yet connected to Signadot.'
-        type: string
-    type: object
-securityDefinitions:
-  ApiKeyAuth:
-    in: header
-    name: signadot-api-key
-    type: apiKey
+            nil if the cluster has not yet connected to Signadot.'
+          type: string
+      type: object
+    config.TrafficManagerConfig:
+      properties:
+        enabled:
+          type: boolean
+      type: object
+    config.RoutingConfig:
+      properties:
+        customHeaders:
+          items:
+            type: string
+          type: array
+        defaultHeaders:
+          items:
+            $ref: '#/components/schemas/config.DefaultHeaderClass'
+          type: array
+        gatewayAPI:
+          $ref: '#/components/schemas/config.GatewayAPIConfig'
+        iptablesMode:
+          type: string
+        istio:
+          $ref: '#/components/schemas/config.IstioConfig'
+        linkerd:
+          $ref: '#/components/schemas/config.LinkerdConfig'
+        queryParamRouting:
+          $ref: '#/components/schemas/config.QueryParamRoutingConfig'
+      type: object
+    config.QueryParamRoutingConfig:
+      properties:
+        enabled:
+          type: boolean
+        paramName:
+          type: string
+      type: object
+    config.LinkerdConfig:
+      properties:
+        enabled:
+          type: boolean
+        operator:
+          $ref: '#/components/schemas/config.LinkerdSignadotOperator'
+      type: object
+    config.IstioSignadotOperator:
+      properties:
+        podLabels:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    ClusterToken:
+      properties:
+        createdAt:
+          description: The time when this cluster was registered with Signadot.
+          type: string
+        id:
+          description: The ID of this token
+          type: string
+        maskedValue:
+          description: A Masked token value.
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ClusterTokenStatus'
+          description: Token status.
+        token:
+          description: The token value.
+          type: string
+      type: object
+    config.GatewayAPIConfig:
+      properties:
+        enabled:
+          type: boolean
+        preservedAnnotations:
+          items:
+            type: string
+          type: array
+        preservedLabels:
+          items:
+            type: string
+          type: array
+      type: object
+    config.IstioConfig:
+      properties:
+        enableHostRouting:
+          description: Deprecated fields
+          type: boolean
+        enabled:
+          type: boolean
+        operator:
+          $ref: '#/components/schemas/config.IstioSignadotOperator'
+      type: object
+    config.DefaultHeaderClass:
+      enum:
+      - baggage
+      - tracestate
+      type: string
+      x-enum-varnames:
+      - DefaultHeaderBaggage
+      - DefaultHeaderTraceState
+    EmptyResponse:
+      type: object
+    config.ControlPlaneConfig:
+      properties:
+        disabled:
+          description: control plane can be disabled
+          type: boolean
+        proxy:
+          description: control plane proxy can be "enabled" or "disabled"
+          type: string
+        tunnelAddr:
+          type: string
+        tunnelTLS:
+          type: boolean
+      type: object
+    config.ClusterConfig:
+      properties:
+        allowOrphanedResources:
+          type: boolean
+        allowedNamespaces:
+          items:
+            type: string
+          type: array
+        controlPlane:
+          $ref: '#/components/schemas/config.ControlPlaneConfig'
+        routing:
+          $ref: '#/components/schemas/config.RoutingConfig'
+        sandboxTrafficManager:
+          allOf:
+          - $ref: '#/components/schemas/config.SandboxTrafficManagerConfig'
+          description: Deprecated field
+        trafficCapture:
+          $ref: '#/components/schemas/config.TrafficCaptureConfig'
+        trafficManager:
+          $ref: '#/components/schemas/config.TrafficManagerConfig'
+      type: object
+    config.SandboxTrafficManagerConfig:
+      properties:
+        enabled:
+          type: boolean
+      type: object
+    config.LinkerdSignadotOperator:
+      properties:
+        podAnnotations:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    config.TrafficCaptureConfig:
+      properties:
+        enabled:
+          type: boolean
+        requestHeadersElide:
+          items:
+            type: string
+          type: array
+        responseHeadersElide:
+          items:
+            type: string
+          type: array
+      type: object
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+        error:
+          type: string
+        requestId:
+          type: string
+      type: object
+    ClusterTokenStatus:
+      properties:
+        lastConnectedAt:
+          description: The last time at which this token was used to connect.
+          type: string
+        lastConnectedIp:
+          description: The last IP address from which this token connected.
+          type: string
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: signadot-api-key
+      type: apiKey

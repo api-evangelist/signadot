@@ -1,18 +1,16 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   contact: {}
   description: API for Signadot Sandboxes
-  title: Signadot Cluster ResourcePlugins API
+  title: Signadot Resource Plugins API
   version: '2.0'
-host: api.signadot.com
-basePath: /api/v2
+servers:
+- url: https://api.signadot.com/api/v2
 tags:
 - name: ResourcePlugins
 paths:
   /orgs/{orgName}/resource-plugins:
     get:
-      consumes:
-      - application/json
       description: List resource plugins under the specified Signadot org. By default returns only the highest-semver version of each plugin. Pass `?version=all` to expand the response into one row per published (name, version), sorted by name then semver-descending. `?version=latest` is accepted as an explicit alias for the default.
       operationId: list-resource-plugins
       parameters:
@@ -20,36 +18,44 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: '''latest'' (default) returns only the highest-semver version of each plugin; ''all'' returns every published version'
-        enum:
-        - latest
-        - all
         in: query
         name: version
-        type: string
-      produces:
-      - application/json
+        schema:
+          type: string
+          enum:
+          - latest
+          - all
       responses:
         '200':
           description: OK
-          schema:
-            items:
-              $ref: '#/definitions/ResourcePlugin'
-            type: array
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ResourcePlugin'
+                type: array
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: List resource plugins
@@ -57,8 +63,6 @@ paths:
       - ResourcePlugins
   /orgs/{orgName}/resource-plugins/{pluginName}:
     delete:
-      consumes:
-      - application/json
       description: Delete a resource plugin version. Omit the version query parameter to delete the latest version. Deletion is blocked when any sandbox references the specific version being deleted.
       operationId: delete-resource-plugin
       parameters:
@@ -66,46 +70,53 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Resource plugin name
         in: path
         name: pluginName
         required: true
-        type: string
         x-example: mariadb-plugin
+        schema:
+          type: string
       - description: Resource plugin version (semver); omit for latest
         in: query
         name: version
-        type: string
         x-example: 1.2.0
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/EmptyResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: Delete a resource plugin
       tags:
       - ResourcePlugins
     get:
-      consumes:
-      - application/json
       description: Get the specified resource plugin. Omit the version query parameter to get the latest version.
       operationId: get-resource-plugin
       parameters:
@@ -113,46 +124,53 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Resource plugin name
         in: path
         name: pluginName
         required: true
-        type: string
         x-example: mariadb-plugin
+        schema:
+          type: string
       - description: Resource plugin version (semver); omit for latest
         in: query
         name: version
-        type: string
         x-example: 1.2.0
-      produces:
-      - application/json
+        schema:
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/ResourcePlugin'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourcePlugin'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: Get the requested resource plugin
       tags:
       - ResourcePlugins
     put:
-      consumes:
-      - application/json
       description: Creates a new version of a resource plugin. The body's `name` field carries the wire form `bareName[@semver]` (e.g. `my-plugin@1.2.0`); its bare part must match the URL path name. A bare-name form (no `@`) publishes the default version `0.0.0`. Versions are immutable; PUTting an existing (name, version) pair returns 409. The version suffix must be a concrete semver; "latest" is only accepted on the read and delete query parameters.
       operationId: apply-resource-plugin
       parameters:
@@ -160,223 +178,235 @@ paths:
         in: path
         name: orgName
         required: true
-        type: string
         x-example: my-company
+        schema:
+          type: string
       - description: Resource plugin name
         in: path
         name: pluginName
         required: true
-        type: string
         x-example: mariadb-plugin
-      - description: Request to create a resource plugin version
-        in: body
-        name: data
-        required: true
         schema:
-          $ref: '#/definitions/ResourcePlugin'
-      produces:
-      - application/json
+          type: string
       responses:
         '200':
           description: OK
-          schema:
-            $ref: '#/definitions/EmptyResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
         '400':
           description: Bad Request
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Unauthorized
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '409':
           description: Conflict
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '502':
           description: Bad Gateway
-          schema:
-            $ref: '#/definitions/ErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
       security:
       - ApiKeyAuth: []
       summary: Apply a resource plugin
       tags:
       - ResourcePlugins
-definitions:
-  resourceplugin.StepInputTo:
-    properties:
-      env:
-        description: 'Inject the input as an env variable with name Env inside the
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourcePlugin'
+        description: Request to create a resource plugin version
+        required: true
+components:
+  schemas:
+    resourceplugin.ValueFromStep:
+      properties:
+        name:
+          description: Name of the step
+          type: string
+        output:
+          description: Name of the variable from the step
+          type: string
+      type: object
+    EmptyResponse:
+      type: object
+    resourceplugin.Step:
+      properties:
+        inputs:
+          description: Inputs for the step
+          items:
+            $ref: '#/components/schemas/resourceplugin.StepInput'
+          type: array
+        name:
+          description: Name for the step
+          type: string
+        outputs:
+          description: Outputs for the step
+          items:
+            $ref: '#/components/schemas/resourceplugin.StepOut'
+          type: array
+        script:
+          description: Script to execute in the step
+          type: string
+      type: object
+    resourceplugin.StepInput:
+      properties:
+        as:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.StepInputTo'
+          description: 'If the As field is not speficied, we will take the input name
 
-          main container'
-        type: string
-      path:
-        description: Expose the input as a file at Path inside the main container
-        type: string
-    type: object
-  resourceplugin.StepInput:
-    properties:
-      as:
-        allOf:
-        - $ref: '#/definitions/resourceplugin.StepInputTo'
-        description: 'If the As field is not speficied, we will take the input name
+            uppercase it, convert "-" to "_", and inject it as an env var into
 
-          uppercase it, convert "-" to "_", and inject it as an env var into
+            the main container'
+        name:
+          description: Name for the input
+          type: string
+        type:
+          description: Type of input
+          type: string
+        valueFromSandbox:
+          description: ValueFromSandbox defines whether or not to source value from the sandbox spec
+          type: boolean
+        valueFromStep:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.ValueFromStep'
+          description: 'ValueFromStep is an optional string specifying the output of
 
-          the main container'
-      name:
-        description: Name for the input
-        type: string
-      type:
-        description: Type of input
-        type: string
-      valueFromSandbox:
-        description: ValueFromSandbox defines whether or not to source value from the sandbox spec
-        type: boolean
-      valueFromStep:
-        allOf:
-        - $ref: '#/definitions/resourceplugin.ValueFromStep'
-        description: 'ValueFromStep is an optional string specifying the output of
+            another step when not nil.  Exactly one of ValueFromSandbox
 
-          another step when not nil.  Exactly one of ValueFromSandbox
+            and ''ValueFromStep != nil'' must hold.'
+      type: object
+    resourceplugin.Runner:
+      properties:
+        image:
+          description: Image for the runner instance
+          type: string
+        namespace:
+          description: Namespace to create this runner instance in
+          type: string
+        podTemplateOverlay:
+          description: Pod template overlay
+          type: string
+      type: object
+    resourceplugin.StepInputTo:
+      properties:
+        env:
+          description: 'Inject the input as an env variable with name Env inside the
 
-          and ''ValueFromStep != nil'' must hold.'
-    type: object
-  resourceplugin.ValueFromStep:
-    properties:
-      name:
-        description: Name of the step
-        type: string
-      output:
-        description: Name of the variable from the step
-        type: string
-    type: object
-  ResourceInfo:
-    properties:
-      cluster:
-        description: Cluster that the resource is created in
-        type: string
-      name:
-        description: Name of the created resource
-        type: string
-      sandbox:
-        description: Name of the sandbox containing the resource
-        type: string
-    type: object
-  EmptyResponse:
-    type: object
-  resourceplugin.Runner:
-    properties:
-      image:
-        description: Image for the runner instance
-        type: string
-      namespace:
-        description: Namespace to create this runner instance in
-        type: string
-      podTemplateOverlay:
-        description: Pod template overlay
-        type: string
-    type: object
-  resourceplugin.Status:
-    properties:
-      resources:
-        description: Resources created using the resource plugin
-        items:
-          $ref: '#/definitions/ResourceInfo'
-        type: array
-    type: object
-  resourceplugin.Spec:
-    properties:
-      create:
-        description: Create refers to the `create` steps for spinning up the resource
-        items:
-          $ref: '#/definitions/resourceplugin.Step'
-        type: array
-      delete:
-        description: Delete refers to the `delete` steps for spinning up the resource
-        items:
-          $ref: '#/definitions/resourceplugin.Step'
-        type: array
-      description:
-        description: Description for the resource
-        type: string
-      runner:
-        allOf:
-        - $ref: '#/definitions/resourceplugin.Runner'
-        description: Runner for the resource plugin
-    type: object
-  resourceplugin.Step:
-    properties:
-      inputs:
-        description: Inputs for the step
-        items:
-          $ref: '#/definitions/resourceplugin.StepInput'
-        type: array
-      name:
-        description: Name for the step
-        type: string
-      outputs:
-        description: Outputs for the step
-        items:
-          $ref: '#/definitions/resourceplugin.StepOut'
-        type: array
-      script:
-        description: Script to execute in the step
-        type: string
-    type: object
-  ResourcePlugin:
-    properties:
-      createdAt:
-        description: The time at which the resource plugin was created
-        type: string
-      name:
-        description: 'Plugin identity of the form `bareName[@semver]`. The bare-name
+            main container'
+          type: string
+        path:
+          description: Expose the input as a file at Path inside the main container
+          type: string
+      type: object
+    resourceplugin.Spec:
+      properties:
+        create:
+          description: Create refers to the `create` steps for spinning up the resource
+          items:
+            $ref: '#/components/schemas/resourceplugin.Step'
+          type: array
+        delete:
+          description: Delete refers to the `delete` steps for spinning up the resource
+          items:
+            $ref: '#/components/schemas/resourceplugin.Step'
+          type: array
+        description:
+          description: Description for the resource
+          type: string
+        runner:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.Runner'
+          description: Runner for the resource plugin
+      type: object
+    resourceplugin.StepOut:
+      properties:
+        description:
+          description: Description for the output
+          type: string
+        name:
+          description: Name of the output variable
+          type: string
+        type:
+          description: Type of output
+          type: string
+        valueFromPath:
+          description: Path within the main container from where the output will be read
+          type: string
+      type: object
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+        error:
+          type: string
+        requestId:
+          type: string
+      type: object
+    ResourceInfo:
+      properties:
+        cluster:
+          description: Cluster that the resource is created in
+          type: string
+        name:
+          description: Name of the created resource
+          type: string
+        sandbox:
+          description: Name of the sandbox containing the resource
+          type: string
+      type: object
+    ResourcePlugin:
+      properties:
+        createdAt:
+          description: The time at which the resource plugin was created
+          type: string
+        name:
+          description: 'Plugin identity of the form `bareName[@semver]`. The bare-name
 
-          form (no `@`) means the default version (0.0.0); responses
+            form (no `@`) means the default version (0.0.0); responses
 
-          for plugins at the default version use this bare form for
+            for plugins at the default version use this bare form for
 
-          backward compatibility with pre-versioning clients.'
-        example: my-plugin@1.2.0
-        type: string
-      spec:
-        allOf:
-        - $ref: '#/definitions/resourceplugin.Spec'
-        description: Specification for the resource plugin
-      status:
-        allOf:
-        - $ref: '#/definitions/resourceplugin.Status'
-        description: Status of the resource plugin
-      updatedAt:
-        description: The time at which the resource plugin was last updated
-        type: string
-    type: object
-  ErrorResponse:
-    properties:
-      code:
-        type: integer
-      error:
-        type: string
-      requestId:
-        type: string
-    type: object
-  resourceplugin.StepOut:
-    properties:
-      description:
-        description: Description for the output
-        type: string
-      name:
-        description: Name of the output variable
-        type: string
-      type:
-        description: Type of output
-        type: string
-      valueFromPath:
-        description: Path within the main container from where the output will be read
-        type: string
-    type: object
-securityDefinitions:
-  ApiKeyAuth:
-    in: header
-    name: signadot-api-key
-    type: apiKey
+            backward compatibility with pre-versioning clients.'
+          example: my-plugin@1.2.0
+          type: string
+        spec:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.Spec'
+          description: Specification for the resource plugin
+        status:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.Status'
+          description: Status of the resource plugin
+        updatedAt:
+          description: The time at which the resource plugin was last updated
+          type: string
+      type: object
+    resourceplugin.Status:
+      properties:
+        resources:
+          description: Resources created using the resource plugin
+          items:
+            $ref: '#/components/schemas/ResourceInfo'
+          type: array
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: signadot-api-key
+      type: apiKey
