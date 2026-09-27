@@ -207,44 +207,21 @@ paths:
         required: true
 components:
   schemas:
-    routeGroup.Spec:
-      properties:
-        cluster:
-          description: 'Cluster gives the cluster to which the route group applies.
-
-            If left empty, this RG will become a multi-cluster RG..'
-          type: string
-        description:
-          description: Description provides a short description of the route group.
-          type: string
-        endpoints:
-          description: 'Endpoints define endpoints which target different in-cluster
-
-            services.'
-          items:
-            $ref: '#/components/schemas/routegroups.Endpoint'
-          type: array
-        match:
-          allOf:
-          - $ref: '#/components/schemas/routeGroup.Match'
-          description: 'Match defines a matcher for labels, which matches
-
-            sandboxes that should be a part of this route group.'
-        ttl:
-          allOf:
-          - $ref: '#/components/schemas/routeGroup.TTL'
-          description: TTL define when/how the route group should be deleted
-      type: object
+    defaults.ResourceKind:
+      enum:
+      - sandbox
+      - routegroup
+      type: string
+      x-enum-varnames:
+      - SandboxResourceKind
+      - RouteGroupResourceKind
+    defaults.DefaultClass:
+      enum:
+      - ttl
+      type: string
+      x-enum-varnames:
+      - TTL
     EmptyResponse:
-      type: object
-    routegroups.Endpoint:
-      properties:
-        cluster:
-          type: string
-        name:
-          type: string
-        target:
-          type: string
       type: object
     routeGroup.Status:
       properties:
@@ -286,6 +263,92 @@ components:
           type: string
         url:
           type: string
+      type: object
+    defaults.Default:
+      properties:
+        class:
+          $ref: '#/components/schemas/defaults.DefaultClass'
+        createdAt:
+          type: string
+        resourceKind:
+          $ref: '#/components/schemas/defaults.ResourceKind'
+        updatedAt:
+          type: string
+        value: {}
+      type: object
+    routeGroup.TTL:
+      properties:
+        duration:
+          description: "Duration represents the duration until routegroup's end of life.\nIt should be an unsigned integer not exceeding 32 bits followed by\na units character, which can be one of the following.\n  - 'm' for minutes\n  - 'h' for hours\n  - 'd' for days\n  - 'w' for weeks"
+          type: string
+        offsetFrom:
+          description: 'OffsetFrom indicates what the Duration is relative to.  It
+
+            may be the empty string, "noMatchedSandboxes", "createdAt" or "updatedAt". The empty string
+
+            defaults to meaning "noMatchedSandboxes".'
+          type: string
+      type: object
+    routeGroup.MatchLabel:
+      properties:
+        key:
+          description: 'Key is an exact match on a label key, glob
+
+            characters are just considered normal characters.'
+          type: string
+        value:
+          description: 'Value is a glob match for the value of a
+
+            sandbox label.  See https://pkg.go.dev/path/filepath#Match
+
+            for the file glob syntax.'
+          type: string
+      type: object
+    routegroups.Endpoint:
+      properties:
+        cluster:
+          type: string
+        name:
+          type: string
+        target:
+          type: string
+      type: object
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+        error:
+          type: string
+        requestId:
+          type: string
+      type: object
+    routeGroup.Spec:
+      properties:
+        cluster:
+          description: 'Cluster gives the cluster to which the route group applies.
+
+            If left empty, this RG will become a multi-cluster RG..'
+          type: string
+        description:
+          description: Description provides a short description of the route group.
+          type: string
+        endpoints:
+          description: 'Endpoints define endpoints which target different in-cluster
+
+            services.'
+          items:
+            $ref: '#/components/schemas/routegroups.Endpoint'
+          type: array
+        match:
+          allOf:
+          - $ref: '#/components/schemas/routeGroup.Match'
+          description: 'Match defines a matcher for labels, which matches
+
+            sandboxes that should be a part of this route group.'
+        ttl:
+          allOf:
+          - $ref: '#/components/schemas/routeGroup.TTL'
+          description: TTL define when/how the route group should be deleted
       type: object
     RouteGroup:
       properties:
@@ -333,69 +396,6 @@ components:
           description: 'When Label is non-nil, T matches a set of labels L if and only if t.Label.Matches(L).
 
             Only one field may be non-nil.'
-      type: object
-    ErrorResponse:
-      properties:
-        code:
-          type: integer
-        error:
-          type: string
-        requestId:
-          type: string
-      type: object
-    defaults.Default:
-      properties:
-        class:
-          $ref: '#/components/schemas/defaults.DefaultClass'
-        createdAt:
-          type: string
-        resourceKind:
-          $ref: '#/components/schemas/defaults.ResourceKind'
-        updatedAt:
-          type: string
-        value: {}
-      type: object
-    defaults.ResourceKind:
-      enum:
-      - sandbox
-      - routegroup
-      type: string
-      x-enum-varnames:
-      - SandboxResourceKind
-      - RouteGroupResourceKind
-    defaults.DefaultClass:
-      enum:
-      - ttl
-      type: string
-      x-enum-varnames:
-      - TTL
-    routeGroup.MatchLabel:
-      properties:
-        key:
-          description: 'Key is an exact match on a label key, glob
-
-            characters are just considered normal characters.'
-          type: string
-        value:
-          description: 'Value is a glob match for the value of a
-
-            sandbox label.  See https://pkg.go.dev/path/filepath#Match
-
-            for the file glob syntax.'
-          type: string
-      type: object
-    routeGroup.TTL:
-      properties:
-        duration:
-          description: "Duration represents the duration until routegroup's end of life.\nIt should be an unsigned integer not exceeding 32 bits followed by\na units character, which can be one of the following.\n  - 'm' for minutes\n  - 'h' for hours\n  - 'd' for days\n  - 'w' for weeks"
-          type: string
-        offsetFrom:
-          description: 'OffsetFrom indicates what the Duration is relative to.  It
-
-            may be the empty string, "noMatchedSandboxes", "createdAt" or "updatedAt". The empty string
-
-            defaults to meaning "noMatchedSandboxes".'
-          type: string
       type: object
     defaults.CompositeDefaults:
       properties:

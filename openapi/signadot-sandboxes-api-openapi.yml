@@ -212,42 +212,92 @@ paths:
         required: true
 components:
   schemas:
-    sandbox.CustomPatch:
+    sandboxes.Argument:
       properties:
-        type:
-          $ref: '#/components/schemas/sandboxes.PatchType'
+        name:
+          description: Name indicates the name of the associated parameter.
+          type: string
         value:
+          description: 'Value indicates the value passed to the parameter of
+
+            the same name.'
+          type: string
+        valueFrom:
+          allOf:
+          - $ref: '#/components/schemas/sandboxes.ArgValueFrom'
+          description: ValueFrom indicates from where to grab the value
+      type: object
+    defaults.DefaultClass:
+      enum:
+      - ttl
+      type: string
+      x-enum-varnames:
+      - TTL
+    endpoints.Endpoint:
+      properties:
+        name:
+          type: string
+        target:
           type: string
       type: object
-    local.From:
+    sandbox.HostEndpoint:
       properties:
-        kind:
-          description: Kind of the baseline workload.
-          example: Deployment
+        host:
+          description: Hostname that this endpoint points to
           type: string
         name:
-          description: Name of the entity within the Kubernetes cluster.
-          example: my-frontend
+          description: Name of the endpoint
           type: string
-        namespace:
-          description: Namespace within which the entity lives in the Kubernetes cluster.
-          example: default
+        port:
+          description: Port it will map to on the specified host
+          type: integer
+        protocol:
+          description: Protocol that this endpoint uses
           type: string
-      required:
-      - kind
-      - name
-      - namespace
       type: object
-    sandbox.EnvValueFrom:
+    sandboxes.ArgValueFrom:
       properties:
-        configMap:
-          $ref: '#/components/schemas/sandbox.EnvValueFromMap'
-        fork:
-          $ref: '#/components/schemas/sandbox.EnvValueFromFork'
-        resource:
-          $ref: '#/components/schemas/sandbox.EnvValueFromResource'
-        secret:
-          $ref: '#/components/schemas/sandbox.EnvValueFromMap'
+        forward:
+          type: string
+      type: object
+    jobs.Phase:
+      enum:
+      - queued
+      - running
+      - failed
+      - succeeded
+      - canceled
+      type: string
+      x-enum-varnames:
+      - QueuedPhase
+      - RunningPhase
+      - FailedPhase
+      - SucceededPhase
+      - CanceledPhase
+    defaults.Default:
+      properties:
+        class:
+          $ref: '#/components/schemas/defaults.DefaultClass'
+        createdAt:
+          type: string
+        resourceKind:
+          $ref: '#/components/schemas/defaults.ResourceKind'
+        updatedAt:
+          type: string
+        value: {}
+      type: object
+    sandbox.TTL:
+      properties:
+        duration:
+          description: "Duration represents the duration until sandbox end of life.\nIt should be an unsigned integer not exceeding 32 bits followed by\na units character, which can be one of the following.\n  - 'm' for minutes\n  - 'h' for hours\n  - 'd' for days\n  - 'w' for weeks"
+          type: string
+        offsetFrom:
+          description: 'OffsetFrom indicates what the Duration is relative to.  It
+
+            may be the empty string, "createdAt" or "updatedAt".  The empty string
+
+            defaults to meaning "createdAt".'
+          type: string
       type: object
     sandbox.TestExecutionsSummary:
       properties:
@@ -259,6 +309,107 @@ components:
           type: array
         trafficDiffs:
           $ref: '#/components/schemas/sandbox.TestExecutionsSummaryTrafficDiffs'
+      type: object
+    sandbox.CustomPatch:
+      properties:
+        type:
+          $ref: '#/components/schemas/sandboxes.PatchType'
+        value:
+          type: string
+      type: object
+    Sandbox:
+      properties:
+        createdAt:
+          type: string
+        defaults:
+          $ref: '#/components/schemas/defaults.CompositeDefaults'
+        endpoints:
+          items:
+            $ref: '#/components/schemas/sandbox.Endpoint'
+          type: array
+        name:
+          description: Human-readable name of this sandbox
+          type: string
+        routingKey:
+          type: string
+        spec:
+          $ref: '#/components/schemas/sandbox.Spec'
+        status:
+          allOf:
+          - $ref: '#/components/schemas/sandbox.Readiness'
+          description: Status *sdv1.SandboxReadiness `json:"status,omitempty"`
+        updatedAt:
+          type: string
+      type: object
+    sandbox.TunnelStatus:
+      properties:
+        health:
+          properties:
+            connected:
+              type: boolean
+            lastCheckTime:
+              type: string
+            lastConnectedTime:
+              type: string
+          type: object
+      type: object
+    defaults.CompositeDefaults:
+      properties:
+        cluster:
+          items:
+            $ref: '#/components/schemas/defaults.Default'
+          type: array
+      type: object
+    testexecutions.Phase:
+      enum:
+      - pending
+      - in_progress
+      - failed
+      - succeeded
+      - canceled
+      type: string
+      x-enum-varnames:
+      - PendingPhase
+      - InProgressPhase
+      - FailedPhase
+      - SucceededPhase
+      - CanceledPhase
+    sandbox.EnvValueFromFork:
+      properties:
+        expression:
+          type: string
+        forkOf:
+          $ref: '#/components/schemas/sandbox.ForkOf'
+      type: object
+    sandbox.Image:
+      properties:
+        container:
+          description: Container is the container this image must apply to in the forked workload
+          type: string
+        image:
+          description: Name of the image (e.g. gcr.io/my-image/repo:my-tag)
+          type: string
+      type: object
+    sandboxes.PatchType:
+      enum:
+      - strategic
+      - merge
+      - json
+      - signadot/env
+      - signadot/image
+      type: string
+      x-enum-varnames:
+      - PatchTypeStrategic
+      - PatchTypeMerge
+      - PatchTypeJSON
+      - PatchTypeSDEnv
+      - PatchTypeSDImage
+    sandboxes.Routing:
+      properties:
+        forwards:
+          items:
+            $ref: '#/components/schemas/sandboxes.Forward'
+          type: array
       type: object
     sandbox.Readiness:
       properties:
@@ -296,27 +447,6 @@ components:
           - $ref: '#/components/schemas/sandbox.TestExecutionsSummary'
           description: status of the test executions running in the context of the given sandbox
       type: object
-    sandbox.Fork:
-      properties:
-        customizations:
-          allOf:
-          - $ref: '#/components/schemas/sandbox.Customizations'
-          description: Customizations specify the customizations we will apply on the fork
-        endpoints:
-          description: Deprecated. Use defaultRouteGroup.Endpoints instead.
-          items:
-            $ref: '#/components/schemas/sandbox.ForkEndpoint'
-          type: array
-          x-omitempty: 'true'
-        forkOf:
-          allOf:
-          - $ref: '#/components/schemas/sandbox.ForkOf'
-          description: 'ForkOf specifies the target workload that we will be forking.  In this usage
-
-            the Kind of the ForkOf object must not be a service.'
-        name:
-          type: string
-      type: object
     sandbox.Endpoint:
       properties:
         baselineUrl:
@@ -336,62 +466,14 @@ components:
         url:
           type: string
       type: object
-    testexecutions.Phase:
-      enum:
-      - pending
-      - in_progress
-      - failed
-      - succeeded
-      - canceled
-      type: string
-      x-enum-varnames:
-      - PendingPhase
-      - InProgressPhase
-      - FailedPhase
-      - SucceededPhase
-      - CanceledPhase
-    sandboxes.Argument:
+    sandboxes.MiddlewareMatch:
       properties:
-        name:
-          description: Name indicates the name of the associated parameter.
-          type: string
-        value:
-          description: 'Value indicates the value passed to the parameter of
-
-            the same name.'
-          type: string
-        valueFrom:
-          allOf:
-          - $ref: '#/components/schemas/sandboxes.ArgValueFrom'
-          description: ValueFrom indicates from where to grab the value
-      type: object
-    defaults.Default:
-      properties:
-        class:
-          $ref: '#/components/schemas/defaults.DefaultClass'
-        createdAt:
-          type: string
-        resourceKind:
-          $ref: '#/components/schemas/defaults.ResourceKind'
-        updatedAt:
-          type: string
-        value: {}
-      type: object
-    virtual:
-      properties:
-        name:
-          type: string
         workload:
-          $ref: '#/components/schemas/local.From'
+          description: 'Workload specifies a glob which matches
+
+            each workload name in the spec.'
+          type: string
       type: object
-    sandboxes.EnvOpName:
-      enum:
-      - upsert
-      - delete
-      type: string
-      x-enum-varnames:
-      - EnvOpUpsert
-      - EnvOpDelete
     sandbox.EnvValueFromResource:
       properties:
         name:
@@ -413,34 +495,40 @@ components:
           description: Plugin name, optionally suffixed with @version (e.g. my-plugin@1.2.0)
           type: string
       type: object
-    endpoints.Endpoint:
+    sandbox.TestExecutionsSummaryChecks:
+      properties:
+        failed:
+          type: integer
+        passed:
+          type: integer
+      type: object
+    sandbox.ForkEndpoint:
+      properties:
+        name:
+          description: Name of the endpoint
+          type: string
+        port:
+          description: Port it will map to on the forked workload
+          type: integer
+        protocol:
+          description: Protocol that this endpoint uses
+          type: string
+      type: object
+    sandboxes.ForwardStatus:
       properties:
         name:
           type: string
-        target:
-          type: string
+        tunnel:
+          $ref: '#/components/schemas/sandbox.TunnelStatus'
       type: object
-    sandboxes.PatchType:
-      enum:
-      - strategic
-      - merge
-      - json
-      - signadot/env
-      - signadot/image
-      type: string
-      x-enum-varnames:
-      - PatchTypeStrategic
-      - PatchTypeMerge
-      - PatchTypeJSON
-      - PatchTypeSDEnv
-      - PatchTypeSDImage
-    sandboxes.MiddlewareMatch:
+    sandbox.TestExecutionsSummaryTrafficDiffs:
       properties:
-        workload:
-          description: 'Workload specifies a glob which matches
-
-            each workload name in the spec.'
-          type: string
+        green:
+          type: integer
+        red:
+          type: integer
+        yellow:
+          type: integer
       type: object
     sandbox.ForkOf:
       properties:
@@ -461,52 +549,23 @@ components:
       - name
       - namespace
       type: object
-    sandboxes.Routing:
+    sandbox.EnvValueFrom:
       properties:
-        forwards:
+        configMap:
+          $ref: '#/components/schemas/sandbox.EnvValueFromMap'
+        fork:
+          $ref: '#/components/schemas/sandbox.EnvValueFromFork'
+        resource:
+          $ref: '#/components/schemas/sandbox.EnvValueFromResource'
+        secret:
+          $ref: '#/components/schemas/sandbox.EnvValueFromMap'
+      type: object
+    sandbox.DefaultRouteGroup:
+      properties:
+        endpoints:
           items:
-            $ref: '#/components/schemas/sandboxes.Forward'
+            $ref: '#/components/schemas/endpoints.Endpoint'
           type: array
-      type: object
-    sandbox.Image:
-      properties:
-        container:
-          description: Container is the container this image must apply to in the forked workload
-          type: string
-        image:
-          description: Name of the image (e.g. gcr.io/my-image/repo:my-tag)
-          type: string
-      type: object
-    sandboxes.ForwardStatus:
-      properties:
-        name:
-          type: string
-        tunnel:
-          $ref: '#/components/schemas/sandbox.TunnelStatus'
-      type: object
-    sandbox.HostEndpoint:
-      properties:
-        host:
-          description: Hostname that this endpoint points to
-          type: string
-        name:
-          description: Name of the endpoint
-          type: string
-        port:
-          description: Port it will map to on the specified host
-          type: integer
-        protocol:
-          description: Protocol that this endpoint uses
-          type: string
-      type: object
-    sandbox.EnvValueFromMap:
-      properties:
-        key:
-          type: string
-        name:
-          type: string
-        optional:
-          type: boolean
       type: object
     sandboxes.Middleware:
       properties:
@@ -525,6 +584,55 @@ components:
         name:
           description: Middleware name
           type: string
+      type: object
+    testexecutions.PhaseCount:
+      properties:
+        count:
+          type: integer
+        phase:
+          $ref: '#/components/schemas/testexecutions.Phase'
+      type: object
+    sandboxes.JobsSummary:
+      properties:
+        phaseCounts:
+          items:
+            $ref: '#/components/schemas/jobs.PhaseCount'
+          type: array
+      type: object
+    local.From:
+      properties:
+        kind:
+          description: Kind of the baseline workload.
+          example: Deployment
+          type: string
+        name:
+          description: Name of the entity within the Kubernetes cluster.
+          example: my-frontend
+          type: string
+        namespace:
+          description: Namespace within which the entity lives in the Kubernetes cluster.
+          example: default
+          type: string
+      required:
+      - kind
+      - name
+      - namespace
+      type: object
+    sandbox.EnvValueFromMap:
+      properties:
+        key:
+          type: string
+        name:
+          type: string
+        optional:
+          type: boolean
+      type: object
+    jobs.PhaseCount:
+      properties:
+        count:
+          type: integer
+        phase:
+          $ref: '#/components/schemas/jobs.Phase'
       type: object
     sandbox.EnvVar:
       properties:
@@ -546,12 +654,71 @@ components:
           - $ref: '#/components/schemas/sandbox.EnvValueFrom'
           description: environmental variable dynamic value
       type: object
-    sandbox.TestExecutionsSummaryChecks:
+    sandbox.Customizations:
       properties:
-        failed:
+        env:
+          description: Environment variable modifications that will be applied to the forked workload
+          items:
+            $ref: '#/components/schemas/sandbox.EnvVar'
+          type: array
+        images:
+          description: One or more docker images that will be applied to the forked workload
+          items:
+            $ref: '#/components/schemas/sandbox.Image'
+          type: array
+        patch:
+          $ref: '#/components/schemas/sandbox.CustomPatch'
+      type: object
+    sandbox.Fork:
+      properties:
+        customizations:
+          allOf:
+          - $ref: '#/components/schemas/sandbox.Customizations'
+          description: Customizations specify the customizations we will apply on the fork
+        endpoints:
+          description: Deprecated. Use defaultRouteGroup.Endpoints instead.
+          items:
+            $ref: '#/components/schemas/sandbox.ForkEndpoint'
+          type: array
+          x-omitempty: 'true'
+        forkOf:
+          allOf:
+          - $ref: '#/components/schemas/sandbox.ForkOf'
+          description: 'ForkOf specifies the target workload that we will be forking.  In this usage
+
+            the Kind of the ForkOf object must not be a service.'
+        name:
+          type: string
+      type: object
+    defaults.ResourceKind:
+      enum:
+      - sandbox
+      - routegroup
+      type: string
+      x-enum-varnames:
+      - SandboxResourceKind
+      - RouteGroupResourceKind
+    EmptyResponse:
+      type: object
+    sandboxes.Forward:
+      properties:
+        appProtocol:
+          type: string
+        name:
+          type: string
+        port:
           type: integer
-        passed:
+        toLocal:
+          type: string
+      type: object
+    ErrorResponse:
+      properties:
+        code:
           type: integer
+        error:
+          type: string
+        requestId:
+          type: string
       type: object
     sandbox.Spec:
       properties:
@@ -619,187 +786,20 @@ components:
       - cluster
       - forks
       type: object
-    jobs.Phase:
+    sandboxes.EnvOpName:
       enum:
-      - queued
-      - running
-      - failed
-      - succeeded
-      - canceled
+      - upsert
+      - delete
       type: string
       x-enum-varnames:
-      - QueuedPhase
-      - RunningPhase
-      - FailedPhase
-      - SucceededPhase
-      - CanceledPhase
-    defaults.ResourceKind:
-      enum:
-      - sandbox
-      - routegroup
-      type: string
-      x-enum-varnames:
-      - SandboxResourceKind
-      - RouteGroupResourceKind
-    defaults.DefaultClass:
-      enum:
-      - ttl
-      type: string
-      x-enum-varnames:
-      - TTL
-    sandboxes.Forward:
-      properties:
-        appProtocol:
-          type: string
-        name:
-          type: string
-        port:
-          type: integer
-        toLocal:
-          type: string
-      type: object
-    defaults.CompositeDefaults:
-      properties:
-        cluster:
-          items:
-            $ref: '#/components/schemas/defaults.Default'
-          type: array
-      type: object
-    jobs.PhaseCount:
-      properties:
-        count:
-          type: integer
-        phase:
-          $ref: '#/components/schemas/jobs.Phase'
-      type: object
-    sandbox.TestExecutionsSummaryTrafficDiffs:
-      properties:
-        green:
-          type: integer
-        red:
-          type: integer
-        yellow:
-          type: integer
-      type: object
-    EmptyResponse:
-      type: object
-    sandboxes.ArgValueFrom:
-      properties:
-        forward:
-          type: string
-      type: object
-    sandbox.TTL:
-      properties:
-        duration:
-          description: "Duration represents the duration until sandbox end of life.\nIt should be an unsigned integer not exceeding 32 bits followed by\na units character, which can be one of the following.\n  - 'm' for minutes\n  - 'h' for hours\n  - 'd' for days\n  - 'w' for weeks"
-          type: string
-        offsetFrom:
-          description: 'OffsetFrom indicates what the Duration is relative to.  It
-
-            may be the empty string, "createdAt" or "updatedAt".  The empty string
-
-            defaults to meaning "createdAt".'
-          type: string
-      type: object
-    Sandbox:
-      properties:
-        createdAt:
-          type: string
-        defaults:
-          $ref: '#/components/schemas/defaults.CompositeDefaults'
-        endpoints:
-          items:
-            $ref: '#/components/schemas/sandbox.Endpoint'
-          type: array
-        name:
-          description: Human-readable name of this sandbox
-          type: string
-        routingKey:
-          type: string
-        spec:
-          $ref: '#/components/schemas/sandbox.Spec'
-        status:
-          allOf:
-          - $ref: '#/components/schemas/sandbox.Readiness'
-          description: Status *sdv1.SandboxReadiness `json:"status,omitempty"`
-        updatedAt:
-          type: string
-      type: object
-    testexecutions.PhaseCount:
-      properties:
-        count:
-          type: integer
-        phase:
-          $ref: '#/components/schemas/testexecutions.Phase'
-      type: object
-    sandboxes.JobsSummary:
-      properties:
-        phaseCounts:
-          items:
-            $ref: '#/components/schemas/jobs.PhaseCount'
-          type: array
-      type: object
-    sandbox.TunnelStatus:
-      properties:
-        health:
-          properties:
-            connected:
-              type: boolean
-            lastCheckTime:
-              type: string
-            lastConnectedTime:
-              type: string
-          type: object
-      type: object
-    sandbox.ForkEndpoint:
+      - EnvOpUpsert
+      - EnvOpDelete
+    virtual:
       properties:
         name:
-          description: Name of the endpoint
           type: string
-        port:
-          description: Port it will map to on the forked workload
-          type: integer
-        protocol:
-          description: Protocol that this endpoint uses
-          type: string
-      type: object
-    ErrorResponse:
-      properties:
-        code:
-          type: integer
-        error:
-          type: string
-        requestId:
-          type: string
-      type: object
-    sandbox.DefaultRouteGroup:
-      properties:
-        endpoints:
-          items:
-            $ref: '#/components/schemas/endpoints.Endpoint'
-          type: array
-      type: object
-    sandbox.EnvValueFromFork:
-      properties:
-        expression:
-          type: string
-        forkOf:
-          $ref: '#/components/schemas/sandbox.ForkOf'
-      type: object
-    sandbox.Customizations:
-      properties:
-        env:
-          description: Environment variable modifications that will be applied to the forked workload
-          items:
-            $ref: '#/components/schemas/sandbox.EnvVar'
-          type: array
-        images:
-          description: One or more docker images that will be applied to the forked workload
-          items:
-            $ref: '#/components/schemas/sandbox.Image'
-          type: array
-        patch:
-          $ref: '#/components/schemas/sandbox.CustomPatch'
+        workload:
+          $ref: '#/components/schemas/local.From'
       type: object
   securitySchemes:
     ApiKeyAuth:
