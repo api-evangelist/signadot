@@ -45,6 +45,13 @@ paths:
       - Orgs
 components:
   schemas:
+    orgs.Org:
+      properties:
+        displayName:
+          type: string
+        name:
+          type: string
+      type: object
     orgs.User:
       properties:
         avatar:
@@ -95,13 +102,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/authtypes.UserFlags'
           description: Flags of authenticated user, if any
-      type: object
-    orgs.Org:
-      properties:
-        displayName:
-          type: string
-        name:
-          type: string
       type: object
     authtypes.UserFlags:
       additionalProperties:

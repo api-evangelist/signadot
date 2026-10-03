@@ -233,31 +233,28 @@ paths:
         required: true
 components:
   schemas:
-    resourceplugin.StepOut:
+    resourceplugin.StepInputTo:
       properties:
-        description:
-          description: Description for the output
+        env:
+          description: 'Inject the input as an env variable with name Env inside the
+
+            main container'
           type: string
-        name:
-          description: Name of the output variable
-          type: string
-        type:
-          description: Type of output
-          type: string
-        valueFromPath:
-          description: Path within the main container from where the output will be read
+        path:
+          description: Expose the input as a file at Path inside the main container
           type: string
       type: object
-    resourceplugin.ValueFromStep:
+    resourceplugin.Runner:
       properties:
-        name:
-          description: Name of the step
+        image:
+          description: Image for the runner instance
           type: string
-        output:
-          description: Name of the variable from the step
+        namespace:
+          description: Namespace to create this runner instance in
           type: string
-      type: object
-    EmptyResponse:
+        podTemplateOverlay:
+          description: Pod template overlay
+          type: string
       type: object
     resourceplugin.Spec:
       properties:
@@ -279,25 +276,89 @@ components:
           - $ref: '#/components/schemas/resourceplugin.Runner'
           description: Runner for the resource plugin
       type: object
-    resourceplugin.Runner:
+    resourceplugin.StepInput:
       properties:
-        image:
-          description: Image for the runner instance
+        as:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.StepInputTo'
+          description: 'If the As field is not speficied, we will take the input name
+
+            uppercase it, convert "-" to "_", and inject it as an env var into
+
+            the main container'
+        name:
+          description: Name for the input
           type: string
-        namespace:
-          description: Namespace to create this runner instance in
+        type:
+          description: Type of input
           type: string
-        podTemplateOverlay:
-          description: Pod template overlay
+        valueFromSandbox:
+          description: ValueFromSandbox defines whether or not to source value from the sandbox spec
+          type: boolean
+        valueFromStep:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.ValueFromStep'
+          description: 'ValueFromStep is an optional string specifying the output of
+
+            another step when not nil.  Exactly one of ValueFromSandbox
+
+            and ''ValueFromStep != nil'' must hold.'
+      type: object
+    ResourceInfo:
+      properties:
+        cluster:
+          description: Cluster that the resource is created in
+          type: string
+        name:
+          description: Name of the created resource
+          type: string
+        sandbox:
+          description: Name of the sandbox containing the resource
           type: string
       type: object
-    ErrorResponse:
+    resourceplugin.ValueFromStep:
       properties:
-        code:
-          type: integer
-        error:
+        name:
+          description: Name of the step
           type: string
-        requestId:
+        output:
+          description: Name of the variable from the step
+          type: string
+      type: object
+    resourceplugin.Step:
+      properties:
+        inputs:
+          description: Inputs for the step
+          items:
+            $ref: '#/components/schemas/resourceplugin.StepInput'
+          type: array
+        name:
+          description: Name for the step
+          type: string
+        outputs:
+          description: Outputs for the step
+          items:
+            $ref: '#/components/schemas/resourceplugin.StepOut'
+          type: array
+        script:
+          description: Script to execute in the step
+          type: string
+      type: object
+    EmptyResponse:
+      type: object
+    resourceplugin.StepOut:
+      properties:
+        description:
+          description: Description for the output
+          type: string
+        name:
+          description: Name of the output variable
+          type: string
+        type:
+          description: Type of output
+          type: string
+        valueFromPath:
+          description: Path within the main container from where the output will be read
           type: string
       type: object
     ResourcePlugin:
@@ -327,18 +388,6 @@ components:
           description: The time at which the resource plugin was last updated
           type: string
       type: object
-    ResourceInfo:
-      properties:
-        cluster:
-          description: Cluster that the resource is created in
-          type: string
-        name:
-          description: Name of the created resource
-          type: string
-        sandbox:
-          description: Name of the sandbox containing the resource
-          type: string
-      type: object
     resourceplugin.Status:
       properties:
         resources:
@@ -347,63 +396,14 @@ components:
             $ref: '#/components/schemas/ResourceInfo'
           type: array
       type: object
-    resourceplugin.Step:
+    ErrorResponse:
       properties:
-        inputs:
-          description: Inputs for the step
-          items:
-            $ref: '#/components/schemas/resourceplugin.StepInput'
-          type: array
-        name:
-          description: Name for the step
+        code:
+          type: integer
+        error:
           type: string
-        outputs:
-          description: Outputs for the step
-          items:
-            $ref: '#/components/schemas/resourceplugin.StepOut'
-          type: array
-        script:
-          description: Script to execute in the step
+        requestId:
           type: string
-      type: object
-    resourceplugin.StepInputTo:
-      properties:
-        env:
-          description: 'Inject the input as an env variable with name Env inside the
-
-            main container'
-          type: string
-        path:
-          description: Expose the input as a file at Path inside the main container
-          type: string
-      type: object
-    resourceplugin.StepInput:
-      properties:
-        as:
-          allOf:
-          - $ref: '#/components/schemas/resourceplugin.StepInputTo'
-          description: 'If the As field is not speficied, we will take the input name
-
-            uppercase it, convert "-" to "_", and inject it as an env var into
-
-            the main container'
-        name:
-          description: Name for the input
-          type: string
-        type:
-          description: Type of input
-          type: string
-        valueFromSandbox:
-          description: ValueFromSandbox defines whether or not to source value from the sandbox spec
-          type: boolean
-        valueFromStep:
-          allOf:
-          - $ref: '#/components/schemas/resourceplugin.ValueFromStep'
-          description: 'ValueFromStep is an optional string specifying the output of
-
-            another step when not nil.  Exactly one of ValueFromSandbox
-
-            and ''ValueFromStep != nil'' must hold.'
       type: object
   securitySchemes:
     ApiKeyAuth:
