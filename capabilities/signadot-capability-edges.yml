@@ -1,0 +1,25 @@
+slug: signadot
+provider: Signadot
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Sandboxes
+  spec_file: signadot-sandboxes-api-openapi.yml
+  capability_id: BC-4210.20
+  capability_id_l1: BC-4210
+  capability_name: Environment Management
+  confidence: 0.78
+  evidence: PUT /orgs/{orgName}/sandboxes/{sandboxName}  apply-sandbox  Create or update a sandbox; sandbox.Fork,
+    sandbox.TTL
+  reason: Lifecycle of ephemeral sandbox environments (fork of services, TTL) used for development and
+    pre-production validation — squarely non-production environment provisioning and stewardship.

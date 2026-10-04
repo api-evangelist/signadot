@@ -148,6 +148,9 @@ apis:
   - type: Conventions
     url: conventions/signadot-conventions.yml
 common:
+- type: CapabilityMap
+  url: capabilities/signadot-capability-edges.yml
+  name: Signadot Business Capability Map
 - type: Overlay
   url: overlays/signadot-openapi-overlay.yaml
 - type: DeveloperPortal
