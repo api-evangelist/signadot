@@ -338,46 +338,79 @@ paths:
       - Cluster
 components:
   schemas:
-    config.DefaultHeaderClass:
-      enum:
-      - baggage
-      - tracestate
-      type: string
-      x-enum-varnames:
-      - DefaultHeaderBaggage
-      - DefaultHeaderTraceState
-    config.TrafficManagerConfig:
+    config.SandboxTrafficManagerConfig:
       properties:
         enabled:
           type: boolean
       type: object
-    config.LinkerdSignadotOperator:
+    cluster.Operator:
       properties:
-        podAnnotations:
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-    config.RoutingConfig:
-      properties:
-        customHeaders:
-          items:
-            type: string
-          type: array
-        defaultHeaders:
-          items:
-            $ref: '#/components/schemas/config.DefaultHeaderClass'
-          type: array
-        gatewayAPI:
-          $ref: '#/components/schemas/config.GatewayAPIConfig'
-        iptablesMode:
+        version:
+          description: 'The operator version of the cluster.  This may be
+
+            nil if the cluster has not yet connected to Signadot.'
           type: string
-        istio:
-          $ref: '#/components/schemas/config.IstioConfig'
-        linkerd:
-          $ref: '#/components/schemas/config.LinkerdConfig'
-        queryParamRouting:
-          $ref: '#/components/schemas/config.QueryParamRoutingConfig'
+      type: object
+    Cluster:
+      properties:
+        clusterConfig:
+          allOf:
+          - $ref: '#/components/schemas/config.ClusterConfig'
+          description: Cluster config read from the cluster
+        createdAt:
+          description: The time when this cluster was registered with Signadot.
+          type: string
+        name:
+          description: The name of the cluster.
+          type: string
+        operator:
+          allOf:
+          - $ref: '#/components/schemas/cluster.Operator'
+          description: Information about the Signadot Operator in this cluster.
+      type: object
+    ClusterTokenStatus:
+      properties:
+        lastConnectedAt:
+          description: The last time at which this token was used to connect.
+          type: string
+        lastConnectedIp:
+          description: The last IP address from which this token connected.
+          type: string
+      type: object
+    config.QueryParamRoutingConfig:
+      properties:
+        enabled:
+          type: boolean
+        paramName:
+          type: string
+      type: object
+    ClusterToken:
+      properties:
+        createdAt:
+          description: The time when this cluster was registered with Signadot.
+          type: string
+        id:
+          description: The ID of this token
+          type: string
+        maskedValue:
+          description: A Masked token value.
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ClusterTokenStatus'
+          description: Token status.
+        token:
+          description: The token value.
+          type: string
+      type: object
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+        error:
+          type: string
+        requestId:
+          type: string
       type: object
     config.ClusterConfig:
       properties:
@@ -400,29 +433,26 @@ components:
         trafficManager:
           $ref: '#/components/schemas/config.TrafficManagerConfig'
       type: object
-    ErrorResponse:
+    config.RoutingConfig:
       properties:
-        code:
-          type: integer
-        error:
+        customHeaders:
+          items:
+            type: string
+          type: array
+        defaultHeaders:
+          items:
+            $ref: '#/components/schemas/config.DefaultHeaderClass'
+          type: array
+        gatewayAPI:
+          $ref: '#/components/schemas/config.GatewayAPIConfig'
+        iptablesMode:
           type: string
-        requestId:
-          type: string
-      type: object
-    config.QueryParamRoutingConfig:
-      properties:
-        enabled:
-          type: boolean
-        paramName:
-          type: string
-      type: object
-    cluster.Operator:
-      properties:
-        version:
-          description: 'The operator version of the cluster.  This may be
-
-            nil if the cluster has not yet connected to Signadot.'
-          type: string
+        istio:
+          $ref: '#/components/schemas/config.IstioConfig'
+        linkerd:
+          $ref: '#/components/schemas/config.LinkerdConfig'
+        queryParamRouting:
+          $ref: '#/components/schemas/config.QueryParamRoutingConfig'
       type: object
     config.TrafficCaptureConfig:
       properties:
@@ -437,6 +467,14 @@ components:
             type: string
           type: array
       type: object
+    config.DefaultHeaderClass:
+      enum:
+      - baggage
+      - tracestate
+      type: string
+      x-enum-varnames:
+      - DefaultHeaderBaggage
+      - DefaultHeaderTraceState
     config.ControlPlaneConfig:
       properties:
         disabled:
@@ -449,30 +487,6 @@ components:
           type: string
         tunnelTLS:
           type: boolean
-      type: object
-    config.IstioConfig:
-      properties:
-        enableHostRouting:
-          description: Deprecated fields
-          type: boolean
-        enabled:
-          type: boolean
-        operator:
-          $ref: '#/components/schemas/config.IstioSignadotOperator'
-      type: object
-    config.IstioSignadotOperator:
-      properties:
-        podLabels:
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-    config.LinkerdConfig:
-      properties:
-        enabled:
-          type: boolean
-        operator:
-          $ref: '#/components/schemas/config.LinkerdSignadotOperator'
       type: object
     config.GatewayAPIConfig:
       properties:
@@ -487,57 +501,43 @@ components:
             type: string
           type: array
       type: object
-    EmptyResponse:
-      type: object
-    config.SandboxTrafficManagerConfig:
+    config.TrafficManagerConfig:
       properties:
         enabled:
           type: boolean
       type: object
-    ClusterToken:
+    config.IstioSignadotOperator:
       properties:
-        createdAt:
-          description: The time when this cluster was registered with Signadot.
-          type: string
-        id:
-          description: The ID of this token
-          type: string
-        maskedValue:
-          description: A Masked token value.
-          type: string
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ClusterTokenStatus'
-          description: Token status.
-        token:
-          description: The token value.
-          type: string
+        podLabels:
+          additionalProperties:
+            type: string
+          type: object
       type: object
-    ClusterTokenStatus:
+    config.LinkerdSignadotOperator:
       properties:
-        lastConnectedAt:
-          description: The last time at which this token was used to connect.
-          type: string
-        lastConnectedIp:
-          description: The last IP address from which this token connected.
-          type: string
+        podAnnotations:
+          additionalProperties:
+            type: string
+          type: object
       type: object
-    Cluster:
+    EmptyResponse:
+      type: object
+    config.LinkerdConfig:
       properties:
-        clusterConfig:
-          allOf:
-          - $ref: '#/components/schemas/config.ClusterConfig'
-          description: Cluster config read from the cluster
-        createdAt:
-          description: The time when this cluster was registered with Signadot.
-          type: string
-        name:
-          description: The name of the cluster.
-          type: string
+        enabled:
+          type: boolean
         operator:
-          allOf:
-          - $ref: '#/components/schemas/cluster.Operator'
-          description: Information about the Signadot Operator in this cluster.
+          $ref: '#/components/schemas/config.LinkerdSignadotOperator'
+      type: object
+    config.IstioConfig:
+      properties:
+        enableHostRouting:
+          description: Deprecated fields
+          type: boolean
+        enabled:
+          type: boolean
+        operator:
+          $ref: '#/components/schemas/config.IstioSignadotOperator'
       type: object
   securitySchemes:
     ApiKeyAuth:

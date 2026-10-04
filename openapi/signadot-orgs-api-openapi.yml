@@ -45,32 +45,6 @@ paths:
       - Orgs
 components:
   schemas:
-    orgs.Org:
-      properties:
-        displayName:
-          type: string
-        name:
-          type: string
-      type: object
-    orgs.User:
-      properties:
-        avatar:
-          type: string
-        createdAt:
-          type: string
-        email:
-          type: string
-        firstName:
-          type: string
-        id:
-          type: string
-        lastName:
-          type: string
-        role:
-          type: string
-        updatedAt:
-          type: string
-      type: object
     ErrorResponse:
       properties:
         code:
@@ -79,6 +53,17 @@ components:
           type: string
         requestId:
           type: string
+      type: object
+    orgs.Org:
+      properties:
+        displayName:
+          type: string
+        name:
+          type: string
+      type: object
+    authtypes.UserFlags:
+      additionalProperties:
+        type: boolean
       type: object
     orgs.GetOrgNameResponse:
       properties:
@@ -103,9 +88,24 @@ components:
           - $ref: '#/components/schemas/authtypes.UserFlags'
           description: Flags of authenticated user, if any
       type: object
-    authtypes.UserFlags:
-      additionalProperties:
-        type: boolean
+    orgs.User:
+      properties:
+        avatar:
+          type: string
+        createdAt:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        id:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+        updatedAt:
+          type: string
       type: object
   securitySchemes:
     ApiKeyAuth:
