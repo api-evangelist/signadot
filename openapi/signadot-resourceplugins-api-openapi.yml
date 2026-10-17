@@ -233,41 +233,36 @@ paths:
         required: true
 components:
   schemas:
-    resourceplugin.ValueFromStep:
+    resourceplugin.StepInputTo:
       properties:
-        name:
-          description: Name of the step
+        env:
+          description: 'Inject the input as an env variable with name Env inside the
+
+            main container'
           type: string
-        output:
-          description: Name of the variable from the step
+        path:
+          description: Expose the input as a file at Path inside the main container
           type: string
       type: object
-    ResourcePlugin:
+    resourceplugin.Spec:
       properties:
-        createdAt:
-          description: The time at which the resource plugin was created
+        create:
+          description: Create refers to the `create` steps for spinning up the resource
+          items:
+            $ref: '#/components/schemas/resourceplugin.Step'
+          type: array
+        delete:
+          description: Delete refers to the `delete` steps for spinning up the resource
+          items:
+            $ref: '#/components/schemas/resourceplugin.Step'
+          type: array
+        description:
+          description: Description for the resource
           type: string
-        name:
-          description: 'Plugin identity of the form `bareName[@semver]`. The bare-name
-
-            form (no `@`) means the default version (0.0.0); responses
-
-            for plugins at the default version use this bare form for
-
-            backward compatibility with pre-versioning clients.'
-          example: my-plugin@1.2.0
-          type: string
-        spec:
+        runner:
           allOf:
-          - $ref: '#/components/schemas/resourceplugin.Spec'
-          description: Specification for the resource plugin
-        status:
-          allOf:
-          - $ref: '#/components/schemas/resourceplugin.Status'
-          description: Status of the resource plugin
-        updatedAt:
-          description: The time at which the resource plugin was last updated
-          type: string
+          - $ref: '#/components/schemas/resourceplugin.Runner'
+          description: Runner for the resource plugin
       type: object
     ErrorResponse:
       properties:
@@ -276,25 +271,6 @@ components:
         error:
           type: string
         requestId:
-          type: string
-      type: object
-    resourceplugin.Step:
-      properties:
-        inputs:
-          description: Inputs for the step
-          items:
-            $ref: '#/components/schemas/resourceplugin.StepInput'
-          type: array
-        name:
-          description: Name for the step
-          type: string
-        outputs:
-          description: Outputs for the step
-          items:
-            $ref: '#/components/schemas/resourceplugin.StepOut'
-          type: array
-        script:
-          description: Script to execute in the step
           type: string
       type: object
     ResourceInfo:
@@ -309,33 +285,13 @@ components:
           description: Name of the sandbox containing the resource
           type: string
       type: object
-    EmptyResponse:
-      type: object
-    resourceplugin.StepOut:
+    resourceplugin.ValueFromStep:
       properties:
-        description:
-          description: Description for the output
-          type: string
         name:
-          description: Name of the output variable
+          description: Name of the step
           type: string
-        type:
-          description: Type of output
-          type: string
-        valueFromPath:
-          description: Path within the main container from where the output will be read
-          type: string
-      type: object
-    resourceplugin.Runner:
-      properties:
-        image:
-          description: Image for the runner instance
-          type: string
-        namespace:
-          description: Namespace to create this runner instance in
-          type: string
-        podTemplateOverlay:
-          description: Pod template overlay
+        output:
+          description: Name of the variable from the step
           type: string
       type: object
     resourceplugin.StepInput:
@@ -366,6 +322,39 @@ components:
 
             and ''ValueFromStep != nil'' must hold.'
       type: object
+    EmptyResponse:
+      type: object
+    resourceplugin.Step:
+      properties:
+        inputs:
+          description: Inputs for the step
+          items:
+            $ref: '#/components/schemas/resourceplugin.StepInput'
+          type: array
+        name:
+          description: Name for the step
+          type: string
+        outputs:
+          description: Outputs for the step
+          items:
+            $ref: '#/components/schemas/resourceplugin.StepOut'
+          type: array
+        script:
+          description: Script to execute in the step
+          type: string
+      type: object
+    resourceplugin.Runner:
+      properties:
+        image:
+          description: Image for the runner instance
+          type: string
+        namespace:
+          description: Namespace to create this runner instance in
+          type: string
+        podTemplateOverlay:
+          description: Pod template overlay
+          type: string
+      type: object
     resourceplugin.Status:
       properties:
         resources:
@@ -374,35 +363,46 @@ components:
             $ref: '#/components/schemas/ResourceInfo'
           type: array
       type: object
-    resourceplugin.Spec:
+    ResourcePlugin:
       properties:
-        create:
-          description: Create refers to the `create` steps for spinning up the resource
-          items:
-            $ref: '#/components/schemas/resourceplugin.Step'
-          type: array
-        delete:
-          description: Delete refers to the `delete` steps for spinning up the resource
-          items:
-            $ref: '#/components/schemas/resourceplugin.Step'
-          type: array
-        description:
-          description: Description for the resource
+        createdAt:
+          description: The time at which the resource plugin was created
           type: string
-        runner:
-          allOf:
-          - $ref: '#/components/schemas/resourceplugin.Runner'
-          description: Runner for the resource plugin
-      type: object
-    resourceplugin.StepInputTo:
-      properties:
-        env:
-          description: 'Inject the input as an env variable with name Env inside the
+        name:
+          description: 'Plugin identity of the form `bareName[@semver]`. The bare-name
 
-            main container'
+            form (no `@`) means the default version (0.0.0); responses
+
+            for plugins at the default version use this bare form for
+
+            backward compatibility with pre-versioning clients.'
+          example: my-plugin@1.2.0
           type: string
-        path:
-          description: Expose the input as a file at Path inside the main container
+        spec:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.Spec'
+          description: Specification for the resource plugin
+        status:
+          allOf:
+          - $ref: '#/components/schemas/resourceplugin.Status'
+          description: Status of the resource plugin
+        updatedAt:
+          description: The time at which the resource plugin was last updated
+          type: string
+      type: object
+    resourceplugin.StepOut:
+      properties:
+        description:
+          description: Description for the output
+          type: string
+        name:
+          description: Name of the output variable
+          type: string
+        type:
+          description: Type of output
+          type: string
+        valueFromPath:
+          description: Path within the main container from where the output will be read
           type: string
       type: object
   securitySchemes:

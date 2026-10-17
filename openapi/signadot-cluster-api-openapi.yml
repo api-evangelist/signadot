@@ -338,10 +338,47 @@ paths:
       - Cluster
 components:
   schemas:
-    config.SandboxTrafficManagerConfig:
+    ErrorResponse:
+      properties:
+        code:
+          type: integer
+        error:
+          type: string
+        requestId:
+          type: string
+      type: object
+    config.LinkerdConfig:
       properties:
         enabled:
           type: boolean
+        operator:
+          $ref: '#/components/schemas/config.LinkerdSignadotOperator'
+      type: object
+    config.GatewayAPIConfig:
+      properties:
+        enabled:
+          type: boolean
+        preservedAnnotations:
+          items:
+            type: string
+          type: array
+        preservedLabels:
+          items:
+            type: string
+          type: array
+      type: object
+    config.TrafficCaptureConfig:
+      properties:
+        enabled:
+          type: boolean
+        requestHeadersElide:
+          items:
+            type: string
+          type: array
+        responseHeadersElide:
+          items:
+            type: string
+          type: array
       type: object
     cluster.Operator:
       properties:
@@ -351,38 +388,34 @@ components:
             nil if the cluster has not yet connected to Signadot.'
           type: string
       type: object
-    Cluster:
+    config.DefaultHeaderClass:
+      enum:
+      - baggage
+      - tracestate
+      type: string
+      x-enum-varnames:
+      - DefaultHeaderBaggage
+      - DefaultHeaderTraceState
+    config.RoutingConfig:
       properties:
-        clusterConfig:
-          allOf:
-          - $ref: '#/components/schemas/config.ClusterConfig'
-          description: Cluster config read from the cluster
-        createdAt:
-          description: The time when this cluster was registered with Signadot.
+        customHeaders:
+          items:
+            type: string
+          type: array
+        defaultHeaders:
+          items:
+            $ref: '#/components/schemas/config.DefaultHeaderClass'
+          type: array
+        gatewayAPI:
+          $ref: '#/components/schemas/config.GatewayAPIConfig'
+        iptablesMode:
           type: string
-        name:
-          description: The name of the cluster.
-          type: string
-        operator:
-          allOf:
-          - $ref: '#/components/schemas/cluster.Operator'
-          description: Information about the Signadot Operator in this cluster.
-      type: object
-    ClusterTokenStatus:
-      properties:
-        lastConnectedAt:
-          description: The last time at which this token was used to connect.
-          type: string
-        lastConnectedIp:
-          description: The last IP address from which this token connected.
-          type: string
-      type: object
-    config.QueryParamRoutingConfig:
-      properties:
-        enabled:
-          type: boolean
-        paramName:
-          type: string
+        istio:
+          $ref: '#/components/schemas/config.IstioConfig'
+        linkerd:
+          $ref: '#/components/schemas/config.LinkerdConfig'
+        queryParamRouting:
+          $ref: '#/components/schemas/config.QueryParamRoutingConfig'
       type: object
     ClusterToken:
       properties:
@@ -403,14 +436,44 @@ components:
           description: The token value.
           type: string
       type: object
-    ErrorResponse:
+    config.SandboxTrafficManagerConfig:
       properties:
-        code:
-          type: integer
-        error:
+        enabled:
+          type: boolean
+      type: object
+    Cluster:
+      properties:
+        clusterConfig:
+          allOf:
+          - $ref: '#/components/schemas/config.ClusterConfig'
+          description: Cluster config read from the cluster
+        createdAt:
+          description: The time when this cluster was registered with Signadot.
           type: string
-        requestId:
+        name:
+          description: The name of the cluster.
           type: string
+        operator:
+          allOf:
+          - $ref: '#/components/schemas/cluster.Operator'
+          description: Information about the Signadot Operator in this cluster.
+      type: object
+    config.LinkerdSignadotOperator:
+      properties:
+        podAnnotations:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    config.IstioConfig:
+      properties:
+        enableHostRouting:
+          description: Deprecated fields
+          type: boolean
+        enabled:
+          type: boolean
+        operator:
+          $ref: '#/components/schemas/config.IstioSignadotOperator'
       type: object
     config.ClusterConfig:
       properties:
@@ -433,73 +496,16 @@ components:
         trafficManager:
           $ref: '#/components/schemas/config.TrafficManagerConfig'
       type: object
-    config.RoutingConfig:
-      properties:
-        customHeaders:
-          items:
-            type: string
-          type: array
-        defaultHeaders:
-          items:
-            $ref: '#/components/schemas/config.DefaultHeaderClass'
-          type: array
-        gatewayAPI:
-          $ref: '#/components/schemas/config.GatewayAPIConfig'
-        iptablesMode:
-          type: string
-        istio:
-          $ref: '#/components/schemas/config.IstioConfig'
-        linkerd:
-          $ref: '#/components/schemas/config.LinkerdConfig'
-        queryParamRouting:
-          $ref: '#/components/schemas/config.QueryParamRoutingConfig'
+    EmptyResponse:
       type: object
-    config.TrafficCaptureConfig:
+    ClusterTokenStatus:
       properties:
-        enabled:
-          type: boolean
-        requestHeadersElide:
-          items:
-            type: string
-          type: array
-        responseHeadersElide:
-          items:
-            type: string
-          type: array
-      type: object
-    config.DefaultHeaderClass:
-      enum:
-      - baggage
-      - tracestate
-      type: string
-      x-enum-varnames:
-      - DefaultHeaderBaggage
-      - DefaultHeaderTraceState
-    config.ControlPlaneConfig:
-      properties:
-        disabled:
-          description: control plane can be disabled
-          type: boolean
-        proxy:
-          description: control plane proxy can be "enabled" or "disabled"
+        lastConnectedAt:
+          description: The last time at which this token was used to connect.
           type: string
-        tunnelAddr:
+        lastConnectedIp:
+          description: The last IP address from which this token connected.
           type: string
-        tunnelTLS:
-          type: boolean
-      type: object
-    config.GatewayAPIConfig:
-      properties:
-        enabled:
-          type: boolean
-        preservedAnnotations:
-          items:
-            type: string
-          type: array
-        preservedLabels:
-          items:
-            type: string
-          type: array
       type: object
     config.TrafficManagerConfig:
       properties:
@@ -513,31 +519,25 @@ components:
             type: string
           type: object
       type: object
-    config.LinkerdSignadotOperator:
+    config.ControlPlaneConfig:
       properties:
-        podAnnotations:
-          additionalProperties:
-            type: string
-          type: object
+        disabled:
+          description: control plane can be disabled
+          type: boolean
+        proxy:
+          description: control plane proxy can be "enabled" or "disabled"
+          type: string
+        tunnelAddr:
+          type: string
+        tunnelTLS:
+          type: boolean
       type: object
-    EmptyResponse:
-      type: object
-    config.LinkerdConfig:
+    config.QueryParamRoutingConfig:
       properties:
         enabled:
           type: boolean
-        operator:
-          $ref: '#/components/schemas/config.LinkerdSignadotOperator'
-      type: object
-    config.IstioConfig:
-      properties:
-        enableHostRouting:
-          description: Deprecated fields
-          type: boolean
-        enabled:
-          type: boolean
-        operator:
-          $ref: '#/components/schemas/config.IstioSignadotOperator'
+        paramName:
+          type: string
       type: object
   securitySchemes:
     ApiKeyAuth:
