@@ -64,6 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Signadot is a company surfaced as a portfolio company of redpoint-ventures and added to the API Evangelist network as a stub for enrichment. Sector: developer-tools. This profile is a lead awaiting the enrichment pipeline.
+Signadot is a Kubernetes-native platform for validating microservices and AI-generated code changes against real dependencies before merge. Its core is environment virtualization: large numbers of lightweight ephemeral "sandboxes" spin up in seconds by routing request-level traffic to only the changed services on a shared cluster, without duplicating the whole stack. Testing capabilities — Jobs (Playwright/Cypress/k6 runners), Smart Tests (AI regression detection), and Plans (reusable validation workflows) — layer on top, and a bundled MCP server plus installable Agent Skills let coding agents (Cursor, Claude Code, Codex) provision environments and validate their own work. Signadot installs as a Kubernetes operator, integrates with service meshes and CI/CD, and exposes a REST control-plane API, a CLI, and a Go SDK.
 
-Backed by: redpoint-ventures — https://signadot.com/
+**Areas:** Company · Developer Tools · Kubernetes · Testing · Ephemeral Environments · Microservices · Preview Environments · Agentic Development · Continuous Integration · Developer Experience
+
+## Signadot on APIs.io
+
+Everything profiled for Signadot is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/signadot/](https://apis.io/providers/signadot/)** — or go straight to one of the APIs or properties below.
+
+### APIs (5)
+
+- [Signadot Cluster API](https://apis.io/apis/signadot/signadot-cluster-api/) — The Cluster API from Signadot — 5 operation(s) for cluster.
+- [Signadot Orgs API](https://apis.io/apis/signadot/signadot-orgs-api/) — The Orgs API from Signadot — 1 operation(s) for orgs.
+- [Signadot ResourcePlugins API](https://apis.io/apis/signadot/signadot-resourceplugins-api/) — The ResourcePlugins API from Signadot — 2 operation(s) for resourceplugins.
+- [Signadot RouteGroups API](https://apis.io/apis/signadot/signadot-routegroups-api/) — The RouteGroups API from Signadot — 2 operation(s) for routegroups.
+- [Signadot Sandboxes API](https://apis.io/apis/signadot/signadot-sandboxes-api/) — The Sandboxes API from Signadot — 2 operation(s) for sandboxes.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (1)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Create and inspect a Signadot sandbox](https://apis.io/arazzos/signadot/signadot-create-and-inspect-sandbox/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [signadot](https://apis.io/servers/signadot/signadot/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Signadot Agentic Access](https://apis.io/agentic-access/signadot/signadot-agentic-access/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Signadot Cluster API](https://apis.io/collections/signadot/open-signadot-cluster-api/)
+- [Signadot Cluster Orgs API](https://apis.io/collections/signadot/open-signadot-orgs-api/)
+- [Signadot Cluster ResourcePlugins API](https://apis.io/collections/signadot/open-signadot-resourceplugins-api/)
+- [Signadot Cluster RouteGroups API](https://apis.io/collections/signadot/open-signadot-routegroups-api/)
+- [Signadot Cluster Sandboxes API](https://apis.io/collections/signadot/open-signadot-sandboxes-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Signadot Openapi Overlay](https://apis.io/overlays/signadot/signadot-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Signadot Authentication](https://apis.io/security/signadot/signadot-authentication/)
+- [Signadot Domain Security](https://apis.io/security/signadot/signadot-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://signadot.com/)
+- [Documentation](https://www.signadot.com/docs/overview)
+- [Getting started](https://www.signadot.com/docs/getting-started/installation)
+- [API reference](https://www.signadot.com/docs/api)
+- [Pricing](https://www.signadot.com/pricing/)
+- [Sign up](https://www.signadot.com/signup/)
+- [Support](https://signadotcommunity.slack.com)
+- [Blog](https://www.signadot.com/blog/)
+- [Terms of service](https://www.signadot.com/terms-of-service)
+- [Privacy policy](https://www.signadot.com/privacy-policy)
+- [GitHub](https://github.com/signadot)
+- [Status](https://status.signadot.com/)
+
+## API Evangelist rating
+
+**Kin Score 55.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 50.8 |
+| Contract governance | 18.2 |
+| Operational transparency | 34.2 |
+| Developer ergonomics | 73.2 |
+| Access clarity | 52.6 |
+
+**Agent readiness 27.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/signadot/](https://apis.io/providers/signadot/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Signadot: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/signadot/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
